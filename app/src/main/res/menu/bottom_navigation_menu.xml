@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/money_icon"
+        android:title="Finanças"/>
+    <item
+        android:id="@+id/fragmentRelatorio"
+        android:enabled="true"
+        android:icon="@drawable/relat_icon"
+        android:title="Relatório"/>
+    <item
+        android:id="@+id/page_3"
+        android:enabled="true"
+        android:icon="@drawable/analise_icon"
+        android:title="Analises"/>
+    <item
+        android:id="@+id/fragmentConfigs"
+        android:enabled="true"
+        android:icon="@drawable/configuration_icon"
+        android:title="Configurações"/>
+
+    <item
+        android:id="@+id/page_5"
+        android:enabled="true"
+        android:icon="@drawable/extras_icon"
+        android:title="Extras"/>
+</menu>

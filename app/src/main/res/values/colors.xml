@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Tema Light-->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--Tema Rosa-->
+    <color name="rosa_escuro">#FC00E6</color>
+    <color name="rosa_medio">#ef5693</color>
+    <color name="rosa_claro">#ED73CF</color>
+    <color name="rosa">#FFA4E9</color>
+
+    <!--Tema Azul-->
+    <color name="azul_escuro">#000c19</color>
+    <color name="azul_medio">#0056B3</color>
+    <color name="azul_claro">#003166</color>
+
+    <!--Tema Verde-->
+    <color name="verde_escuro">#104010</color>
+    <color name="verde_medio">#30BC09</color>
+    <color name="verde_claro">#76D885</color>
+
+    <!--Tema Laranja-->
+    <color name="laranja_escuro">#953B00</color>
+    <color name="laranja_medio">#FF6700</color>
+    <color name="laranja_claro">#EA964C</color>
+
+    <!--Tema Dark-->
+    <color name="blue_200">#8290DD</color>
+    <color name="blue_500">#3F51B5</color>
+    <color name="blue_700">#303F9F</color>
+    <color name="pink_200">#FF4081</color>
+    <color name="pink_700">#BD0040</color>
+</resources>

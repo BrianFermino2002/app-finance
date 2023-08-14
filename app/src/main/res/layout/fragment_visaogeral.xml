@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/iv_cred"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/credito_icon"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/iv_deb"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="48dp"
+        android:src="@drawable/debito_icon"/>
+
+    <TextView
+        android:id="@+id/tv_cred"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="placeholder"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintStart_toStartOf="@id/iv_cred"
+        app:layout_constraintEnd_toEndOf="@id/iv_cred"
+        app:layout_constraintTop_toBottomOf="@id/iv_cred"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tv_deb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@id/iv_deb"
+        app:layout_constraintEnd_toEndOf="@id/iv_deb"
+        app:layout_constraintTop_toBottomOf="@id/iv_deb"
+        android:layout_margin="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

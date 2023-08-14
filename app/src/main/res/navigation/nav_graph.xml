@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.finance.presentation.fragments.homeFragment"
+        tools:layout="@layout/fragment_home"
+        android:label="homeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentVisaoGeral"
+            app:destination="@id/fragmentVisaoGeral" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentRelatorio"
+            app:destination="@id/fragmentRelatorio" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentConfigs"
+            app:destination="@id/fragmentConfigs" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentVisaoGeral"
+        android:name="com.example.finance.presentation.fragments.FragmentVisaoGeral"
+        android:label="FragmentVisaoGeral"
+        tools:layout="@layout/fragment_visaogeral">
+        <action
+            android:id="@+id/action_fragmentVisaoGeral_to_fragmentLancamentos"
+            app:destination="@id/fragmentLancamentos" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLancamentos"
+        tools:layout="@layout/fragment_lancamentos"
+        android:name="com.example.finance.presentation.fragments.FragmentLancamentos"
+        android:label="FragmentLancamentos" />
+    <fragment
+        android:id="@+id/fragmentRelatorio"
+        tools:layout="@layout/fragment_relatorio"
+        android:name="com.example.finance.presentation.fragments.FragmentRelatorio"
+        android:label="FragmentRelatorio" />
+    <fragment
+        android:id="@+id/fragmentConfigs"
+        tools:layout="@layout/fragment_configs"
+        android:name="com.example.finance.presentation.fragments.FragmentConfigs"
+        android:label="FragmentConfigs" />
+</navigation>

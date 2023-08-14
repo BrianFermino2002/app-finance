@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_escolha_tema"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/TextAppearance.Material3.HeadlineSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Escolha um de nossos temas abaixo:"/>
+
+    <TextView
+        android:id="@+id/blueColor"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="#0027FF"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#E1BEE7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_escolha_tema" />
+
+    <TextView
+        android:id="@+id/pinkColor"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="#FF04E5"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@id/blueColor"
+        app:layout_constraintTop_toBottomOf="@id/tv_escolha_tema" />
+
+    <TextView
+        android:id="@+id/greenColor"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="#06611F"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#E1BEE7"
+        app:layout_constraintStart_toEndOf="@id/pinkColor"
+        app:layout_constraintTop_toBottomOf="@id/tv_escolha_tema" />
+
+    <TextView
+        android:id="@+id/orangeColor"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="#FF6D00"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@id/greenColor"
+        app:layout_constraintTop_toBottomOf="@id/tv_escolha_tema" />
+
+    <ImageButton
+        android:id="@+id/ib_semTema"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/not_icon"
+        style="?attr/materialButtonOutlinedStyle"
+        app:tint="?attr/iconTint"
+        app:layout_constraintStart_toEndOf="@id/orangeColor"
+        android:layout_margin="5dp"
+        android:contentDescription="Sem Tema"
+        app:layout_constraintTop_toBottomOf="@id/tv_escolha_tema"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

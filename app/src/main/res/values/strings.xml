@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">finance</string>
+    <string name="bem_vindo">Olá! Seja bem vindo</string>
+    <string name="infocad">Digite seu nome para sabermos se já possui cadastro:</string>
+    <string name="hinthome">Digite seu nome</string>
+    <string name="infoCad">Vi que você ainda não possui cadastro , que tal me passar umas informações para que eu realize um?</string>
+    <string name="txtbtnLogin">Enviar Nome</string>
+    <string name="lancamentos">Lançamentos</string>
+    <string name="visaoGeral">Visão Geral</string>
+
+
+    <string name="primary_color">Primary color</string>
+    <string name="button">Button</string>
+    <string name="secondary_color">Secondary color</string>
+    <string name="email_icon">email icon</string>
+</resources>
