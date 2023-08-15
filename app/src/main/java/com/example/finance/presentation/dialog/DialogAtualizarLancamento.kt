@@ -67,13 +67,12 @@ class DialogAtualizarLancamento: DialogFragment() {
                 }
             }
 
-            var check: RadioButton = binding.rbCredito
+            lateinit var check: RadioButton
+
+            check = checkRB()
+
             binding.rgTipolanc.setOnCheckedChangeListener { group, i ->
-                if(binding.rbCredito.isChecked){
-                    check = binding.rbCredito
-                } else{
-                    check = binding.rbDebito
-                }
+                check = checkRB()
             }
             AlertDialog.Builder(it)
                 .setView(binding.root)
@@ -111,6 +110,14 @@ class DialogAtualizarLancamento: DialogFragment() {
                 fragmentManager,
                 tag
             )
+        }
+    }
+
+    private fun checkRB(): RadioButton{
+        if(binding.rbCredito.isChecked){
+            return binding.rbCredito
+        } else{
+            return  binding.rbDebito
         }
     }
 }

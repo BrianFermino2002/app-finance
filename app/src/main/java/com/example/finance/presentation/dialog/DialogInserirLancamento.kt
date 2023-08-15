@@ -48,21 +48,21 @@ lateinit var binding:FragmentDialogLancamentoBinding
                 }
             }
 
-            var check: RadioButton = binding.rbCredito
+
+
+            var check = checkRB()
+
             binding.rgTipolanc.setOnCheckedChangeListener { group, i ->
-                if(binding.rbCredito.isChecked){
-                    check = binding.rbCredito
-                } else{
-                    check = binding.rbDebito
-                }
+                check = checkRB()
             }
+
             AlertDialog.Builder(it)
                 .setView(binding.root)
                 .setPositiveButton("Confirmar"){_, _ ->
                 setFragmentResult(
                     FRAGMENT_RESULT, bundleOf(
                         EDIT_TEXT_VALUE to binding.etLancamento.text.toString(),
-                        RADIO_BUTTON_VALUE to check.text.toString(),
+                        RADIO_BUTTON_VALUE to check?.text.toString(),
                         DATA_VALUE to binding.etData.text.toString()
                     )
                 )
@@ -94,6 +94,14 @@ lateinit var binding:FragmentDialogLancamentoBinding
                 fragmentManager,
                 tag
             )
+        }
+    }
+
+    private fun checkRB(): RadioButton?{
+        if(binding.rbCredito.isChecked){
+            return binding.rbCredito
+        } else {
+            return  binding.rbDebito
         }
     }
 }

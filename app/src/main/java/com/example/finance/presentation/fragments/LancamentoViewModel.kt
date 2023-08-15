@@ -22,6 +22,8 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class LancamentoViewModel(
     private val insertLancamentoUseCase: InsertLancamentoUseCase,
@@ -42,8 +44,9 @@ class LancamentoViewModel(
     fun getLancamentos(idUsuario: Int): Flow<LancamentoState> = flow {
         emit(LancamentoState.Loading)
         try {
-            val allLancamentos = getLancamentoWithUserUseCase(idUsuario)
-            emit(LancamentoState.Success(lancamento = allLancamentos.lancamento))
+            val allLancamentos = getLancamentoWithUserUseCase(idUsuario).lancamento
+            _lancamentos.value = organizarData(allLancamentos)
+            emit(LancamentoState.Success(lancamento = _lancamentos.value))
         } catch (exception: Exception) {
             Log.e("Error", exception.message.toString())
             emit(LancamentoState.Error(exception.message.toString()))
@@ -65,10 +68,10 @@ class LancamentoViewModel(
                 dataEfet =  dataEfet
             )
         )
-// Obtenha a nova lista de lançamentos após a inserção
+        // Obtenha a nova lista de lançamentos após a inserção
          val newLancamentos = getLancamentoWithUserUseCase(idUsuario).lancamento
-         // Atualize o valor do MutableStateFlow com a nova lista de lançamentos
-         _lancamentos.value = newLancamentos
+
+         _lancamentos.value = organizarData(newLancamentos)
 
          soma(idUsuario)
     }
@@ -93,7 +96,7 @@ class LancamentoViewModel(
         // Obtenha a nova lista de lançamentos após a inserção
         val newLancamentos = getLancamentoWithUserUseCase(idUsuario).lancamento
         // Atualize o valor do MutableStateFlow com a nova lista de lançamentos
-        _lancamentos.value = newLancamentos
+        _lancamentos.value = organizarData(newLancamentos)
 
         soma(idUsuario)
     }
@@ -104,7 +107,7 @@ class LancamentoViewModel(
         // Obtenha a nova lista de lançamentos após a inserção
         val newLancamentos = getLancamentoWithUserUseCase(lancamento.idUsuario).lancamento
         // Atualize o valor do MutableStateFlow com a nova lista de lançamentos
-        _lancamentos.value = newLancamentos
+        _lancamentos.value = organizarData(newLancamentos)
 
         soma(lancamento.idUsuario)
     }
@@ -128,6 +131,12 @@ class LancamentoViewModel(
             _somaCredito.value = 0.0
         }else if(somaDeb ==0.0){
             _somaDebito.value = 0.0
+        }
+    }
+
+    fun organizarData(lista: List<LancamentoDomain>): List<LancamentoDomain>{
+        return lista.sortedBy {
+            SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(it.dataEfet)
         }
     }
 
