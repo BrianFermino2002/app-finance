@@ -1,79 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:layout_margin="16dp"
-    android:clickable="false"
-    android:focusable="true"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="0dp"
-    app:strokeWidth="3dp">
+    <layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_content"
+        <data>
+            <variable
+                name="lancamento"
+                type="com.example.finance.domain.model.Lancamento"/>
+            <variable
+                name="listener"
+                type="com.example.finance.presentation.adapters.LancamentoListener" />
+        </data>
+    <com.google.android.material.card.MaterialCardView
+        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/iv_tipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@drawable/credito_icon"/>
-
-        <TextView
-            android:id="@+id/tv_value"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_tipo"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="R$1000,00" />
-
-        <TextView
-            android:id="@+id/tv_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="25/05/2023"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginRight="32dp"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textSize="16dp"/>
-
-        <ImageButton
-            android:id="@+id/ib_edit"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/edit_icon"
-            android:contentDescription="Editar"
-            android:layout_marginRight="5dp"
-            style="?attr/materialButtonOutlinedStyle"
-            app:tint="?attr/iconTint"
-            app:layout_constraintStart_toStartOf="@id/tv_data"
-            app:layout_constraintEnd_toStartOf="@id/ib_delete"
-            app:layout_constraintTop_toTopOf="@id/ib_delete"
-            app:layout_constraintBottom_toBottomOf="@id/ib_delete"/>
-
-        <ImageButton
-            android:id="@+id/ib_delete"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/delete_icon"
-            android:contentDescription="Deletar"
-            app:tint="?attr/iconTint"
-            style="?attr/materialButtonOutlinedStyle"
-            app:layout_constraintTop_toBottomOf="@id/tv_data"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="16dp"
-            android:layout_marginRight="16dp"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="120dp"
+        android:layout_margin="16dp"
+        android:clickable="false"
+        android:focusable="true"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="3dp">
 
 
-</com.google.android.material.card.MaterialCardView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_tipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                iv_tipo="@{lancamento}"
+                tools:src="@drawable/credito_icon"/>
+
+            <TextView
+                android:id="@+id/tv_value"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_tipo"
+                app:layout_constraintTop_toTopOf="parent"
+                tv_value="@{lancamento}"
+                tools:text="R$1000,00" />
+
+            <TextView
+                android:id="@+id/tv_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="25/05/2023"
+                android:text="@{lancamento.dataEfet}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginRight="32dp"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textSize="16dp"/>
+
+            <ImageButton
+                android:id="@+id/ib_edit"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/edit_icon"
+                android:contentDescription="Editar"
+                android:layout_marginRight="5dp"
+                style="?attr/materialButtonOutlinedStyle"
+                app:tint="?attr/iconTint"
+                android:onClick="@{() -> listener.onEdit(lancamento)}"
+                app:layout_constraintStart_toStartOf="@id/tv_data"
+                app:layout_constraintEnd_toStartOf="@id/ib_delete"
+                app:layout_constraintTop_toTopOf="@id/ib_delete"
+                app:layout_constraintBottom_toBottomOf="@id/ib_delete"/>
+
+            <ImageButton
+                android:id="@+id/ib_delete"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/delete_icon"
+                android:contentDescription="Deletar"
+                app:tint="?attr/iconTint"
+                android:onClick="@{() -> listener.onDelete(lancamento)}"
+                style="?attr/materialButtonOutlinedStyle"
+                app:layout_constraintTop_toBottomOf="@id/tv_data"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+    </layout>
