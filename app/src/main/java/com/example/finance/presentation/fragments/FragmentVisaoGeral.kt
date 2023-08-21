@@ -23,31 +23,28 @@ class FragmentVisaoGeral: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentVisaogeralBinding.inflate(inflater, container, false)
+        initInfos()
         return binding.root
     }
 
+    private fun initInfos(){
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.somaDebito.collect{somaDeb ->
+                binding.tvDeb.setText(formatarLocal(somaDeb))
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.somaCredito.collect{somaCred ->
+                binding.tvCred.setText(formatarLocal(somaCred))
+            }
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeCred()
-        observeDeb()
         observeLanc()
     }
 
-    private fun observeCred() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.somaCredito.collect { somaCred ->
-                binding.tvCred.setText("R$" + somaCred)
-            }
-        }
-    }
-
-    private fun observeDeb() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.somaDebito.collect { somaDeb ->
-                binding.tvDeb.setText("R$" + somaDeb)
-            }
-        }
-    }
 
     private fun observeLanc() {
 
@@ -65,5 +62,11 @@ class FragmentVisaoGeral: Fragment() {
                 }
             }
         }
+    }
+
+    private fun formatarLocal(valor: Double ): String{
+        val currencyFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())
+        val formatado = currencyFormat.format(valor)
+        return formatado
     }
 }

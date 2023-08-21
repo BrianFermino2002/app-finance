@@ -26,12 +26,16 @@ class FragmentLancamentos: Fragment(){
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLancamentosBinding.inflate(inflater, container, false)
-        initBusinessCardList()
+        initLancamentoList()
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeLanc()
+    }
 
-    private fun initBusinessCardList() {
+    private fun initLancamentoList() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.lancamentos.collect { lancamentos ->
                 val adapter = LancamentoAdapter(LancamentoListener(editListener = { lanc ->
@@ -51,6 +55,24 @@ class FragmentLancamentos: Fragment(){
 
         }
 
+    }
+
+    private fun observeLanc() {
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.getLancamentos(HomeActivity.id.toInt()).collect { state ->
+                when (state) {
+                    LancamentoState.Loading -> {
+                        // @TODO mostrar loading para o usuario
+                    }
+                    is LancamentoState.Error -> {
+                        // @TODO Mostrar error parar o usuario
+                    }
+                    is LancamentoState.Success -> {
+                    }
+                }
+            }
+        }
     }
 
 }

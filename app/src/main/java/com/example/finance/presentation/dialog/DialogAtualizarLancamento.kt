@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
+import com.example.finance.data.CategoriaLancamentoEntity
 import com.example.finance.databinding.FragmentDialogLancamentoBinding
 import com.example.finance.domain.model.LancamentoDomain
 import com.example.finance.presentation.fragments.LancamentoViewModel
@@ -56,7 +57,7 @@ class DialogAtualizarLancamento: DialogFragment() {
 
                 val datePicker =
                     MaterialDatePicker.Builder.datePicker()
-                        .setTitleText("Seleione a data")
+                        .setTitleText("Selecione a data")
                         .setInputMode(MaterialDatePicker.INPUT_MODE_TEXT)
                         .build()
                 datePicker.show(parentFragmentManager, "tag")
@@ -82,7 +83,8 @@ class DialogAtualizarLancamento: DialogFragment() {
                         tipomov = check.text.toString(),
                         valor = binding.etLancamento.text.toString().toDouble(),
                         dataEfet = binding.etData.text.toString(),
-                        idUsuario = lancamento.idUsuario
+                        idUsuario = lancamento.idUsuario,
+                        categoria = checkCategoria()
                     )
 
                 }
@@ -118,6 +120,20 @@ class DialogAtualizarLancamento: DialogFragment() {
             return binding.rbCredito
         } else{
             return  binding.rbDebito
+        }
+    }
+
+    private fun checkCategoria(): CategoriaLancamentoEntity {
+        val selectedCategoriaPosition = binding.spCategoria.selectedItemPosition
+
+        return when (selectedCategoriaPosition) {
+            CategoriaLancamentoEntity.CASA.ordinal -> CategoriaLancamentoEntity.CASA
+            CategoriaLancamentoEntity.TRABALHO.ordinal -> CategoriaLancamentoEntity.TRABALHO
+            CategoriaLancamentoEntity.COMIDA.ordinal -> CategoriaLancamentoEntity.COMIDA
+            CategoriaLancamentoEntity.LAZER.ordinal -> CategoriaLancamentoEntity.LAZER
+            CategoriaLancamentoEntity.FACULDADE.ordinal -> CategoriaLancamentoEntity.FACULDADE
+            CategoriaLancamentoEntity.FAMILIA.ordinal -> CategoriaLancamentoEntity.FAMILIA
+            else -> throw IllegalStateException("Categoria inválida selecionada")
         }
     }
 }

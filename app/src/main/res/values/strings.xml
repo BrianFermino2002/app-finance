@@ -7,10 +7,16 @@
     <string name="txtbtnLogin">Enviar Nome</string>
     <string name="lancamentos">Lançamentos</string>
     <string name="visaoGeral">Visão Geral</string>
-
-
     <string name="primary_color">Primary color</string>
     <string name="button">Button</string>
     <string name="secondary_color">Secondary color</string>
     <string name="email_icon">email icon</string>
+    <string-array name="categorias">
+        <item>Casa</item>
+        <item>Trabalho</item>
+        <item>Comida</item>
+        <item>Lazer</item>
+        <item>Faculdade</item>
+        <item>Familia</item>
+    </string-array>
 </resources>

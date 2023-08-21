@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
+import com.example.finance.data.CategoriaLancamentoEntity
 import com.example.finance.databinding.FragmentDialogLancamentoBinding
 import com.example.finance.domain.model.LancamentoDomain
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -51,7 +52,7 @@ lateinit var binding:FragmentDialogLancamentoBinding
 
 
             var check = checkRB()
-
+            var categoria = checkCategoria()
             binding.rgTipolanc.setOnCheckedChangeListener { group, i ->
                 check = checkRB()
             }
@@ -63,7 +64,8 @@ lateinit var binding:FragmentDialogLancamentoBinding
                     FRAGMENT_RESULT, bundleOf(
                         EDIT_TEXT_VALUE to binding.etLancamento.text.toString(),
                         RADIO_BUTTON_VALUE to check?.text.toString(),
-                        DATA_VALUE to binding.etData.text.toString()
+                        DATA_VALUE to binding.etData.text.toString(),
+                        CATEGORIA_VALUE to checkCategoria().toString()
                     )
                 )
 
@@ -80,6 +82,7 @@ lateinit var binding:FragmentDialogLancamentoBinding
         const val EDIT_TEXT_VALUE = "EDIT_TEXT_VALUE"
         const val RADIO_BUTTON_VALUE = "RADIO_BUTTON_VALUE"
         const val DATA_VALUE = "DATA_VALUE"
+        const val CATEGORIA_VALUE = "CATEGORIA_VALUE"
 
         fun show(
             title: String,
@@ -97,11 +100,25 @@ lateinit var binding:FragmentDialogLancamentoBinding
         }
     }
 
-    private fun checkRB(): RadioButton?{
+    private fun checkRB(): RadioButton{
         if(binding.rbCredito.isChecked){
             return binding.rbCredito
         } else {
             return  binding.rbDebito
+        }
+    }
+
+    private fun checkCategoria(): CategoriaLancamentoEntity {
+        val selectedCategoriaPosition = binding.spCategoria.selectedItemPosition
+
+        return when (selectedCategoriaPosition) {
+            CategoriaLancamentoEntity.CASA.ordinal -> CategoriaLancamentoEntity.CASA
+            CategoriaLancamentoEntity.TRABALHO.ordinal -> CategoriaLancamentoEntity.TRABALHO
+            CategoriaLancamentoEntity.COMIDA.ordinal -> CategoriaLancamentoEntity.COMIDA
+            CategoriaLancamentoEntity.LAZER.ordinal -> CategoriaLancamentoEntity.LAZER
+            CategoriaLancamentoEntity.FACULDADE.ordinal -> CategoriaLancamentoEntity.FACULDADE
+            CategoriaLancamentoEntity.FAMILIA.ordinal -> CategoriaLancamentoEntity.FAMILIA
+            else -> throw IllegalStateException("Categoria inválida selecionada")
         }
     }
 }

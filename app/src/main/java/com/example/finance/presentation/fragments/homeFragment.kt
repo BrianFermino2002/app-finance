@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.finance.R
+import com.example.finance.data.CategoriaLancamentoEntity
 import com.example.finance.databinding.FragmentHomeBinding
 import com.example.finance.domain.model.LancamentoDomain
 import com.example.finance.presentation.HomeActivity
@@ -50,11 +51,21 @@ class homeFragment: Fragment() {
             val tipoMov = bundle.getString(DialogInserirLancamento.RADIO_BUTTON_VALUE)?: ""
             val valor = bundle.getString(DialogInserirLancamento.EDIT_TEXT_VALUE)?:""
             val data = bundle.getString(DialogInserirLancamento.DATA_VALUE)?:""
+            val categoria = when(bundle.getString(DialogInserirLancamento.CATEGORIA_VALUE)?: ""){
+                "CASA" -> CategoriaLancamentoEntity.CASA
+                "TRABALHO" -> CategoriaLancamentoEntity.TRABALHO
+                "COMIDA" -> CategoriaLancamentoEntity.COMIDA
+                "LAZER" -> CategoriaLancamentoEntity.LAZER
+                "FACULDADE" -> CategoriaLancamentoEntity.FACULDADE
+                "FAMILIA" -> CategoriaLancamentoEntity.FAMILIA
+                else -> CategoriaLancamentoEntity.CASA
+            }
             viewModelLancamento.insertLancamento(
                 tipomov = tipoMov,
                 valor = valor.toDouble(),
                 idUsuario = HomeActivity.id.toInt(),
-                dataEfet = data
+                dataEfet = data,
+                categoria = categoria
             )
         }
 

@@ -3,6 +3,7 @@ package com.example.finance.data.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.finance.data.CategoriaLancamentoEntity
 
 typealias LancamentoEntity  = Lancamento
 
@@ -12,5 +13,6 @@ data class Lancamento(
     @ColumnInfo (name = "tipoMov")val tipoMov: String,
     @ColumnInfo(name = "valor") val valor: Double,
     @ColumnInfo(name = "idUser") val idUsuario: Int,
-    @ColumnInfo(name = "dataEfet") val dataEfet: String
+    @ColumnInfo(name = "dataEfet") val dataEfet: String,
+    @ColumnInfo(name = "categoriaLancamento") val categoria: CategoriaLancamentoEntity
 )

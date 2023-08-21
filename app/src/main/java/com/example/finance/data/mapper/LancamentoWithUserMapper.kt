@@ -13,7 +13,8 @@ fun UserWithLancamentoEntity.toDomain() = UserWithLancamentoDomain(
         tipoMov = it.tipoMov,
         valor = it.valor,
         idUsuario = it.idUsuario,
-        dataEfet = it.dataEfet
+        dataEfet = it.dataEfet,
+        categoria = it.categoria
 )
     }
 

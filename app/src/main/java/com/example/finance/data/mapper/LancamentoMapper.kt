@@ -1,5 +1,6 @@
 package com.example.finance.data.mapper
 
+import com.example.finance.data.CategoriaLancamentoEntity
 import com.example.finance.data.entity.LancamentoEntity
 import com.example.finance.domain.model.LancamentoDomain
 
@@ -8,7 +9,8 @@ fun LancamentoDomain.toEntity() = LancamentoEntity(
     tipoMov = tipoMov,
     valor = valor,
     idUsuario = idUsuario,
-    dataEfet = dataEfet
+    dataEfet = dataEfet,
+    categoria = categoria
 )
 
 fun LancamentoDomain.toDomain() = LancamentoDomain(
@@ -16,5 +18,6 @@ fun LancamentoDomain.toDomain() = LancamentoDomain(
     tipoMov = tipoMov,
     valor = valor,
     idUsuario = idUsuario,
-    dataEfet = dataEfet
+    dataEfet = dataEfet,
+    categoria = categoria
 )

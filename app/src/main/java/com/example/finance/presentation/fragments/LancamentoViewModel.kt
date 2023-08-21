@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
+import com.example.finance.data.CategoriaLancamentoEntity
 import com.example.finance.data.db
 import com.example.finance.data.repository.UserRepositoryImpl
 import com.example.finance.domain.model.LancamentoDomain
@@ -58,14 +59,16 @@ class LancamentoViewModel(
         tipomov: String,
         valor: Double,
         idUsuario: Int,
-        dataEfet: String
+        dataEfet: String,
+        categoria: CategoriaLancamentoEntity
     ) = viewModelScope.launch {
         insertLancamentoUseCase(
             LancamentoDomain(
                 tipoMov = tipomov,
                 valor = valor,
                 idUsuario = idUsuario,
-                dataEfet =  dataEfet
+                dataEfet =  dataEfet,
+                categoria = categoria
             )
         )
         // Obtenha a nova lista de lançamentos após a inserção
@@ -82,14 +85,17 @@ class LancamentoViewModel(
         valor: Double,
         idUsuario: Int,
         dataEfet: String,
-        id: Int) = viewModelScope.launch {
+        id: Int,
+        categoria: CategoriaLancamentoEntity
+    ) = viewModelScope.launch {
        updateLancamentoUseCase(
            LancamentoDomain(
            tipoMov = tipomov,
            valor = valor,
            idUsuario = idUsuario,
            dataEfet = dataEfet,
-           id = id
+           id = id,
+           categoria = categoria
           )
        )
 

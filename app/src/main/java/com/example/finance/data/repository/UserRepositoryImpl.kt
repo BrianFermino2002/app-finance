@@ -32,7 +32,8 @@ class UserRepositoryImpl(private val dao: UserDAO): UserRepository {
                     tipoMov = lancamento.tipoMov,
                     valor = lancamento.valor,
                     idUsuario = lancamento.idUsuario,
-                    dataEfet = lancamento.dataEfet
+                    dataEfet = lancamento.dataEfet,
+                    categoria = lancamento.categoria
                 )
             )
         }
