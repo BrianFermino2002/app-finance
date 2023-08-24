@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_fragmentConfigs"
             app:destination="@id/fragmentConfigs" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentAnalises"
+            app:destination="@id/fragmentAnalises" />
     </fragment>
     <fragment
         android:id="@+id/fragmentVisaoGeral"
@@ -44,4 +47,9 @@
         tools:layout="@layout/fragment_configs"
         android:name="com.example.finance.presentation.fragments.FragmentConfigs"
         android:label="FragmentConfigs" />
+    <fragment
+        tools:layout="@layout/fragment_analises"
+        android:id="@+id/fragmentAnalises"
+        android:name="com.example.finance.presentation.fragments.FragmentAnalises"
+        android:label="FragmentAnalises" />
 </navigation>

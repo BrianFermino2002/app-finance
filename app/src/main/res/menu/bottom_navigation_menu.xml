@@ -11,7 +11,7 @@
         android:icon="@drawable/relat_icon"
         android:title="Relatório"/>
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/fragmentAnalises"
         android:enabled="true"
         android:icon="@drawable/analise_icon"
         android:title="Analises"/>

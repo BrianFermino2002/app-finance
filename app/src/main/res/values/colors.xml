@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Cores Gráfico-->
+    <color name="pie_graph_casa">#77371D</color>
+    <color name="pie_graph_comida">#BC1515</color>
+    <color name="pie_graph_lazer">#751491</color>
+    <color name="pie_graph_faculdade">#CDBD2D</color>
+    <color name="pie_graph_trabalho">#00BCD4</color>
+    <color name="pie_graph_familia">#604B16</color>
+
     <!--Tema Light-->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Visualize seus gastos em tempo Real"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <org.eazegraph.lib.charts.PieChart
+        android:id="@+id/piechart"
+        android:layout_width="180dp"
+        android:layout_height="250dp"
+        android:padding="6dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <View
+        android:id="@+id/leg_casa"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@color/pie_graph_casa"
+        app:layout_constraintStart_toEndOf="@id/piechart"
+        app:layout_constraintTop_toTopOf="@id/piechart"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <View
+        android:id="@+id/leg_comida"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@color/pie_graph_comida"
+        app:layout_constraintStart_toEndOf="@id/piechart"
+        app:layout_constraintTop_toBottomOf="@id/leg_casa"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <View
+        android:id="@+id/leg_lazer"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@color/pie_graph_lazer"
+        app:layout_constraintStart_toEndOf="@id/piechart"
+        app:layout_constraintTop_toBottomOf="@id/leg_comida"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <View
+        android:id="@+id/leg_faculdade"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@color/pie_graph_faculdade"
+        app:layout_constraintStart_toEndOf="@id/piechart"
+        app:layout_constraintTop_toBottomOf="@id/leg_lazer"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <View
+        android:id="@+id/leg_trabalho"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@color/pie_graph_trabalho"
+        app:layout_constraintStart_toEndOf="@id/piechart"
+        app:layout_constraintTop_toBottomOf="@id/leg_faculdade"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <View
+        android:id="@+id/leg_familia"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@color/pie_graph_familia"
+        app:layout_constraintStart_toEndOf="@id/piechart"
+        app:layout_constraintTop_toBottomOf="@id/leg_trabalho"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <TextView
+        android:id="@+id/tv_casa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Casa"
+        app:layout_constraintStart_toEndOf="@id/leg_casa"
+        app:layout_constraintTop_toTopOf="@id/leg_casa"
+        app:layout_constraintBottom_toBottomOf="@id/leg_casa"
+        android:layout_marginLeft="5dp"
+        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+    <TextView
+        android:id="@+id/tv_comida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comida"
+        app:layout_constraintStart_toEndOf="@id/leg_comida"
+        app:layout_constraintTop_toTopOf="@id/leg_comida"
+        app:layout_constraintBottom_toBottomOf="@id/leg_comida"
+        android:layout_marginLeft="5dp"
+        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+    <TextView
+        android:id="@+id/tv_lazer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lazer"
+        app:layout_constraintStart_toEndOf="@id/leg_lazer"
+        app:layout_constraintTop_toTopOf="@id/leg_lazer"
+        app:layout_constraintBottom_toBottomOf="@id/leg_lazer"
+        android:layout_marginLeft="5dp"
+        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+    <TextView
+        android:id="@+id/tv_faculdade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Faculdade"
+        app:layout_constraintStart_toEndOf="@id/leg_faculdade"
+        app:layout_constraintTop_toTopOf="@id/leg_faculdade"
+        app:layout_constraintBottom_toBottomOf="@id/leg_faculdade"
+        android:layout_marginLeft="5dp"
+        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+    <TextView
+        android:id="@+id/tv_trabalho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trabalho"
+        app:layout_constraintStart_toEndOf="@id/leg_trabalho"
+        app:layout_constraintTop_toTopOf="@id/leg_trabalho"
+        app:layout_constraintBottom_toBottomOf="@id/leg_trabalho"
+        android:layout_marginLeft="5dp"
+        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+    <TextView
+        android:id="@+id/tv_familia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Familia"
+        app:layout_constraintStart_toEndOf="@id/leg_familia"
+        app:layout_constraintTop_toTopOf="@id/leg_familia"
+        app:layout_constraintBottom_toBottomOf="@id/leg_familia"
+        android:layout_marginLeft="5dp"
+        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+    <TextView
+        android:id="@+id/tv_res_casa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Casa"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/piechart"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dvd_casa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/tv_res_casa"/>
+
+    <TextView
+        android:id="@+id/tv_val_casa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_res_casa"
+        app:layout_constraintBottom_toBottomOf="@id/tv_res_casa"
+        tools:text="500"
+        style="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+    <TextView
+        android:id="@+id/tv_res_comida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Comida"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dvd_casa"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dvd_comida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/tv_res_comida"/>
+
+    <TextView
+        android:id="@+id/tv_val_comida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_res_comida"
+        app:layout_constraintBottom_toBottomOf="@id/tv_res_comida"
+        tools:text="500"
+        style="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+    <TextView
+        android:id="@+id/tv_res_lazer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Lazer"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dvd_comida"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dvd_lazer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/tv_res_lazer"/>
+
+    <TextView
+        android:id="@+id/tv_val_lazer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_res_lazer"
+        app:layout_constraintBottom_toBottomOf="@id/tv_res_lazer"
+        tools:text="500"
+        style="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+    <TextView
+        android:id="@+id/tv_res_faculdade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Faculdade"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dvd_lazer"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dvd_faculdade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/tv_res_faculdade"/>
+
+    <TextView
+        android:id="@+id/tv_val_faculdade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_res_faculdade"
+        app:layout_constraintBottom_toBottomOf="@id/tv_res_faculdade"
+        tools:text="500"
+        style="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+    <TextView
+        android:id="@+id/tv_res_trabalho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Trabalho"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dvd_faculdade"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dvd_trabalho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/tv_res_trabalho"/>
+
+    <TextView
+        android:id="@+id/tv_val_trabalho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_res_trabalho"
+        app:layout_constraintBottom_toBottomOf="@id/tv_res_trabalho"
+        tools:text="500"
+        style="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+    <TextView
+        android:id="@+id/tv_res_familia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Familia"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dvd_trabalho"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dvd_familia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.MaterialDivider"
+        app:layout_constraintTop_toBottomOf="@id/tv_res_familia"/>
+
+    <TextView
+        android:id="@+id/tv_val_familia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_res_familia"
+        app:layout_constraintBottom_toBottomOf="@id/tv_res_familia"
+        tools:text="500"
+        style="@style/TextAppearance.MaterialComponents.Headline5"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

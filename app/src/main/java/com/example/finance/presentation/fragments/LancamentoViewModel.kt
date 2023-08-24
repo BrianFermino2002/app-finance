@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -145,6 +146,8 @@ class LancamentoViewModel(
             SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(it.dataEfet)
         }
     }
+
+
 
 
     class Factory : ViewModelProvider.Factory {
