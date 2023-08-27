@@ -15,7 +15,6 @@ import com.example.finance.presentation.HomeActivity
 import kotlinx.coroutines.flow.filter
 import org.eazegraph.lib.models.PieModel
 
-
 class FragmentAnalises: Fragment(){
 
     private lateinit var binding: FragmentAnalisesBinding
@@ -26,47 +25,10 @@ class FragmentAnalises: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        
+
         binding = FragmentAnalisesBinding.inflate(inflater, container, false)
         initLancamentoList()
 
-        binding.piechart.addPieSlice(
-
-            PieModel(
-                "Casa", (10).toFloat(),
-                Color.parseColor("#77371D")
-            )
-        )
-        binding.piechart.addPieSlice(
-            PieModel(
-                "Comida", (10).toFloat(),
-                Color.parseColor("#BC1515")
-            )
-        )
-        binding.piechart.addPieSlice(
-            PieModel(
-                "Lazer", (30).toFloat(),
-                Color.parseColor("#751491")
-            )
-        )
-        binding.piechart.addPieSlice(
-            PieModel(
-                "Faculdade", (20).toFloat(),
-                Color.parseColor("#CDBD2D")
-            )
-        )
-        binding.piechart.addPieSlice(
-            PieModel(
-                "Trabalho", (10).toFloat(),
-                Color.parseColor("#00BCD4")
-            )
-        )
-        binding.piechart.addPieSlice(
-            PieModel(
-                "Familia", (20).toFloat(),
-                Color.parseColor("#604B16")
-            )
-        )
         return binding.root
     }
 
@@ -104,51 +66,62 @@ class FragmentAnalises: Fragment(){
 
     fun somarGastosPorCategoria(categoriaDesejada: CategoriaLancamentoEntity, lista: List<LancamentoDomain>): Double {
         return lista
-            .filter { it.categoria == categoriaDesejada }
+            .filter { it.categoria == categoriaDesejada && it.tipoMov == "Debito" }
             .sumOf { it.valor }
     }
 
     fun gerarGrafico(lista: List<LancamentoDomain>){
-        /*var valor = somarGastosPorCategoria(CategoriaLancamentoEntity.CASA, lista)
-        binding.tvResCasa.setText(valor.toString())
+        var valor = somarGastosPorCategoria(CategoriaLancamentoEntity.CASA, lista)
+        binding.tvValCasa.setText(valor.toString())
+        binding.piechart.clearChart()
         binding.piechart.addPieSlice(
 
             PieModel(
-                "Casa", (valor).coerceIn(0.0, 1.0).toFloat(),
+                "Casa", (valor).toFloat(),
                 Color.parseColor("#77371D")
             )
         )
+        valor = somarGastosPorCategoria(CategoriaLancamentoEntity.COMIDA, lista)
+        binding.tvValComida.setText(valor.toString())
         binding.piechart.addPieSlice(
             PieModel(
-                "Comida", (somarGastosPorCategoria(CategoriaLancamentoEntity.COMIDA, lista)).coerceIn(0.0, 1.0).toFloat(),
+                "Comida", (valor).toFloat(),
                 Color.parseColor("#BC1515")
             )
         )
+        valor = somarGastosPorCategoria(CategoriaLancamentoEntity.LAZER, lista)
+        binding.tvValLazer.setText(valor.toString())
         binding.piechart.addPieSlice(
             PieModel(
-                "Lazer", (somarGastosPorCategoria(CategoriaLancamentoEntity.LAZER, lista)).coerceIn(0.0, 1.0).toFloat(),
+                "Lazer", (valor).toFloat(),
                 Color.parseColor("#751491")
             )
         )
+        valor = somarGastosPorCategoria(CategoriaLancamentoEntity.FACULDADE, lista)
+        binding.tvValFaculdade.setText(valor.toString())
         binding.piechart.addPieSlice(
             PieModel(
-                "Faculdade", (somarGastosPorCategoria(CategoriaLancamentoEntity.FACULDADE, lista)).coerceIn(0.0, 1.0).toFloat(),
+                "Faculdade", (valor).toFloat(),
                 Color.parseColor("#CDBD2D")
             )
         )
+        valor = somarGastosPorCategoria(CategoriaLancamentoEntity.TRABALHO, lista)
+        binding.tvValTrabalho.setText(valor.toString())
         binding.piechart.addPieSlice(
             PieModel(
-                "Trabalho", (somarGastosPorCategoria(CategoriaLancamentoEntity.TRABALHO, lista)).coerceIn(0.0, 1.0).toFloat(),
+                "Trabalho", (valor).toFloat(),
                 Color.parseColor("#00BCD4")
             )
         )
+        valor = somarGastosPorCategoria(CategoriaLancamentoEntity.FAMILIA, lista)
+        binding.tvValFamilia.setText(valor.toString())
         binding.piechart.addPieSlice(
             PieModel(
-                "Familia", (somarGastosPorCategoria(CategoriaLancamentoEntity.FAMILIA, lista)).coerceIn(0.0, 1.0).toFloat(),
+                "Familia", (valor).toFloat(),
                 Color.parseColor("#604B16")
             )
         )
 
-        binding.piechart.startAnimation()*/
-    }
+        binding.piechart.startAnimation()
+        }
 }
