@@ -40,7 +40,7 @@ interface UserDAO {
     @Query("SELECT * FROM user WHERE id = :userId")
     fun getLancamentoWithUser(userId: Int): UserWithLancamentoEntity
 
-    /*@Transaction
+    @Transaction
     @Query("SELECT * FROM resposta WHERE id = :perguntaId")
-    fun getPerguntaWithResposta(perguntaId: Int): PerguntaWithRespostasEntity*/
+    fun getPerguntaWithResposta(perguntaId: Int): PerguntaWithRespostasEntity
 }
