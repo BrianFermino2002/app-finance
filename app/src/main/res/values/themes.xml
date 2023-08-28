@@ -16,20 +16,21 @@
         <item name="iconTint">@color/black</item>
     </style>
 
-    <style name="TemaRosa" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/rosa_escuro</item>
-        <item name="colorPrimaryVariant">@color/rosa_escuro</item>
+    <style name="TemaRosa" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#4a078C</item>
+        <item name="colorPrimaryVariant">#4a078c</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/rosa_medio</item>
-        <item name="colorSecondaryVariant">@color/rosa_medio</item>
+        <item name="colorSecondary">#4a078c</item>
+        <item name="colorSecondaryVariant">#eed0f2</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="colorOutline">@color/rosa_medio</item>
+        <item name="colorOutline">#eed0f2</item>
         <!-- Status bar color. -->
+
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@color/rosa</item>
-        <item name="tabBackground">@color/rosa</item>
-        <item name="colorSurface">@color/rosa_claro</item>
+        <item name="android:windowBackground">#061533</item>
+        <item name="tabBackground">@color/fundoBarbie</item>
+        <item name="colorSurface">#3a3e8c</item>
         <item name="iconTint">@color/black</item>
     </style>
 
@@ -53,22 +54,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="TemaVerde" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/verde_escuro</item>
-        <item name="colorPrimaryVariant">@color/verde_escuro</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/verde_medio</item>
-        <item name="colorSecondaryVariant">@color/verde_medio</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="colorOutline">@color/verde_escuro</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@color/verde_claro</item>
-        <item name="tabBackground">@color/verde_claro</item>
-        <item name="colorSurface">@color/verde_claro</item>
-        <item name="iconTint">@color/black</item>
-    </style>
 
     <style name="TemaLaranja" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/laranja_escuro</item>
@@ -86,4 +71,22 @@
         <item name="colorSurface">@color/laranja_claro</item>
         <item name="iconTint">@color/black</item>
     </style>
+
+    <style name="TemaVerde" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">#10403b</item>
+        <item name="colorPrimaryVariant">#10403b</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#10403b</item>
+        <item name="colorSecondaryVariant">#10403b</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOutline">#10403b</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@color/fundoPalmeirense</item>
+        <item name="tabBackground">@color/fundoPalmeirense</item>
+        <item name="colorSurface">#127369</item>
+        <item name="iconTint">@color/black</item>
+    </style>
+
 </resources>

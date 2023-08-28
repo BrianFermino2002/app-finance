@@ -60,6 +60,7 @@
         app:endIconDrawable="@drawable/clear_icon"
         app:endIconContentDescription="limpar"
         app:counterEnabled="true"
+        style="?attr/temaRoxo"
         app:counterMaxLength="30"
         app:endIconMode="clear_text"
         app:layout_constraintTop_toBottomOf="@+id/tv_infocad"
@@ -80,7 +81,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/txtbtnLogin"
-        style="?attr/materialButtonOutlinedStyle"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

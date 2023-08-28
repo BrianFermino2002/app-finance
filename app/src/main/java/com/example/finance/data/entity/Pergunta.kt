@@ -5,12 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.finance.data.Nivel
 
-typealias UserEntity = User
-
+typealias PerguntaEntity = Pergunta
 @Entity
-data class User (
+data class Pergunta (
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "salario") val salario: Double,
+    @ColumnInfo(name = "enunciado") val enunciado: String,
     @ColumnInfo(name = "nivel") val nivel: Nivel
-        )
+)

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
+import com.example.finance.data.Nivel
 import com.example.finance.data.db
 import com.example.finance.data.repository.UserRepositoryImpl
 import com.example.finance.domain.model.UserDomain
@@ -37,7 +38,7 @@ class UserViewModel(
 
 
     fun insert(name: String, salario: Double) = viewModelScope.launch {
-        insertUserUseCase(UserDomain(name = name, salario = salario))
+        insertUserUseCase(UserDomain(name = name, salario = salario, nivel = Nivel.INICIANTE))
     }
 
     class Factory: ViewModelProvider.Factory{

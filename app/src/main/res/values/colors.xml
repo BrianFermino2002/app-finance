@@ -23,6 +23,7 @@
     <color name="rosa_medio">#ef5693</color>
     <color name="rosa_claro">#ED73CF</color>
     <color name="rosa">#FFA4E9</color>
+    <color name="fundoBarbie">#051026</color>
 
     <!--Tema Azul-->
     <color name="azul_escuro">#000c19</color>
@@ -33,6 +34,8 @@
     <color name="verde_escuro">#104010</color>
     <color name="verde_medio">#30BC09</color>
     <color name="verde_claro">#76D885</color>
+    <color name="fundoPalmeirense">#4C5958</color>
+    <color name="barrafunda">#10403B</color>
 
     <!--Tema Laranja-->
     <color name="laranja_escuro">#953B00</color>

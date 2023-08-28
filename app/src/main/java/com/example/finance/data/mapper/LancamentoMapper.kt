@@ -13,7 +13,7 @@ fun LancamentoDomain.toEntity() = LancamentoEntity(
     categoria = categoria
 )
 
-fun LancamentoDomain.toDomain() = LancamentoDomain(
+fun LancamentoEntity.toDomain() = LancamentoDomain(
     id = id,
     tipoMov = tipoMov,
     valor = valor,

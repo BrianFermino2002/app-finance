@@ -8,14 +8,7 @@ import kotlinx.coroutines.flow.map
 fun UserWithLancamentoEntity.toDomain() = UserWithLancamentoDomain(
     user = user.toDomain(),
     lancamento = lancamento.map{
-        LancamentoDomain(
-        id =it.id,
-        tipoMov = it.tipoMov,
-        valor = it.valor,
-        idUsuario = it.idUsuario,
-        dataEfet = it.dataEfet,
-        categoria = it.categoria
-)
+        it.toDomain()
     }
 
 )

@@ -6,10 +6,12 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import com.example.finance.data.entity.Lancamento
+import com.example.finance.data.entity.LancamentoEntity
+import com.example.finance.data.entity.PerguntaEntity
+import com.example.finance.data.entity.PerguntaWithRespostasEntity
+import com.example.finance.data.entity.RespostaEntity
 import com.example.finance.data.entity.UserEntity
 import com.example.finance.data.entity.UserWithLancamentoEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDAO {
@@ -20,15 +22,25 @@ interface UserDAO {
     fun insert(user:UserEntity)
 
     @Insert
-    fun insert(lancamento: Lancamento)
+    fun insert(lancamento: LancamentoEntity)
+
+    @Insert
+    fun insert(pergunta: PerguntaEntity)
+
+    @Insert
+    fun insert(resposta: RespostaEntity)
 
     @Update
-    fun update(lancamento: Lancamento)
+    fun update(lancamento: LancamentoEntity)
 
     @Delete
-    fun delete(lancamento: Lancamento)
+    fun delete(lancamento: LancamentoEntity)
 
     @Transaction
     @Query("SELECT * FROM user WHERE id = :userId")
     fun getLancamentoWithUser(userId: Int): UserWithLancamentoEntity
+
+    /*@Transaction
+    @Query("SELECT * FROM resposta WHERE id = :perguntaId")
+    fun getPerguntaWithResposta(perguntaId: Int): PerguntaWithRespostasEntity*/
 }
