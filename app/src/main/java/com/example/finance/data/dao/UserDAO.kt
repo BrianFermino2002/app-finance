@@ -18,6 +18,8 @@ interface UserDAO {
     @Query("SELECT * FROM user WHERE name = :user")
     fun getUser(user: String): UserEntity
 
+    @Query("SELECT * FROM pergunta")
+    fun getPerguntas(): List<PerguntaEntity>
     @Insert
     fun insert(user:UserEntity)
 
@@ -41,6 +43,6 @@ interface UserDAO {
     fun getLancamentoWithUser(userId: Int): UserWithLancamentoEntity
 
     @Transaction
-    @Query("SELECT * FROM resposta WHERE id = :perguntaId")
+    @Query("SELECT * FROM pergunta WHERE id = :perguntaId")
     fun getPerguntaWithResposta(perguntaId: Int): PerguntaWithRespostasEntity
 }

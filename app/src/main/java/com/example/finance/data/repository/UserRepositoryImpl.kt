@@ -23,6 +23,12 @@ class UserRepositoryImpl(private val dao: UserDAO): UserRepository {
         dao.getUser(nome).toDomain()
     }
 
+    override suspend fun getPerguntas(): List<PerguntaDomain> = withContext(Dispatchers.IO){
+        dao.getPerguntas().map {
+            it.toDomain()
+        }
+    }
+
     override suspend fun insert(user: UserDomain) = withContext(Dispatchers.IO){
         dao.insert(user.toEntity())
     }
