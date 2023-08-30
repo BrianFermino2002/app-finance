@@ -22,7 +22,7 @@
         android:title="Configurações"/>
 
     <item
-        android:id="@+id/page_5"
+        android:id="@+id/fragmentExtras"
         android:enabled="true"
         android:icon="@drawable/extras_icon"
         android:title="Extras"/>

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment_to_fragmentAnalises"
             app:destination="@id/fragmentAnalises" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentExtras"
+            app:destination="@id/fragmentExtras" />
     </fragment>
     <fragment
         android:id="@+id/fragmentVisaoGeral"
@@ -52,4 +55,9 @@
         android:id="@+id/fragmentAnalises"
         android:name="com.example.finance.presentation.fragments.FragmentAnalises"
         android:label="FragmentAnalises" />
+    <fragment
+        android:id="@+id/fragmentExtras"
+        android:name="com.example.finance.presentation.fragments.FragmentExtras"
+        android:label="FragmentExtras"
+        tools:layout="@layout/fragment_extras"/>
 </navigation>
