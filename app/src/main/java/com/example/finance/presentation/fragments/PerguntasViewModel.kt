@@ -46,7 +46,11 @@ class PerguntasViewModel (
         }.catch {
             _state.emit(PerguntaState.Error("Erro"))
         }.collect{perguntas ->
-            _state.emit(PerguntaState.Success(perguntas))
+                if(perguntas.isEmpty()){
+                    _state.emit(PerguntaState.Empty)
+                }else{
+                    _state.emit(PerguntaState.Success(perguntas))
+                }
         }
     }
 

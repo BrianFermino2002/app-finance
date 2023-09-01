@@ -39,9 +39,18 @@ class PerguntasActivity : AppCompatActivity() {
 
         viewModel.state.observe(this){
             when(it){
-                is PerguntaState.Error -> viewModel.insertPergunta("a", Nivel.INICIANTE)
-                PerguntaState.Loading -> TODO()
-                is PerguntaState.Success -> binding.tvTest.setText(it.pergunta.get(0).enunciado)
+                is PerguntaState.Error -> print("a")
+                PerguntaState.Loading -> {
+
+                }
+                is PerguntaState.Success -> {
+                    it.pergunta.forEach {
+                        binding.tvTest.text = it.enunciado.toString()
+                    }
+                    //binding.tvTest.setText(it.pergunta.get(0).enunciado)
+                }
+
+                PerguntaState.Empty -> viewModel.insertPergunta("a", Nivel.INICIANTE)
             }
         }
     }
