@@ -23,9 +23,11 @@ class UserRepositoryImpl(private val dao: UserDAO): UserRepository {
         dao.getUser(nome).toDomain()
     }
 
-    override suspend fun getPerguntas(): List<PerguntaDomain> = withContext(Dispatchers.IO){
+    override suspend fun getPerguntas(): Flow<List<PerguntaDomain>> = withContext(Dispatchers.IO){
         dao.getPerguntas().map {
-            it.toDomain()
+            it.map{
+                it.toDomain()
+            }
         }
     }
 

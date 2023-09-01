@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
     suspend fun getUser(nome: String): UserDomain
-    suspend fun getPerguntas(): List<PerguntaDomain>
+    suspend fun getPerguntas(): Flow<List<PerguntaDomain>>
     suspend fun insert(user: UserDomain)
     suspend fun insertLancamento(lancamento: LancamentoDomain)
     suspend fun insertPergunta(pergunta: PerguntaDomain)

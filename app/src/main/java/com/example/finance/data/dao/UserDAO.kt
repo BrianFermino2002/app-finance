@@ -12,6 +12,7 @@ import com.example.finance.data.entity.PerguntaWithRespostasEntity
 import com.example.finance.data.entity.RespostaEntity
 import com.example.finance.data.entity.UserEntity
 import com.example.finance.data.entity.UserWithLancamentoEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDAO {
@@ -19,7 +20,7 @@ interface UserDAO {
     fun getUser(user: String): UserEntity
 
     @Query("SELECT * FROM pergunta")
-    fun getPerguntas(): List<PerguntaEntity>
+    fun getPerguntas(): Flow<List<PerguntaEntity>>
     @Insert
     fun insert(user:UserEntity)
 

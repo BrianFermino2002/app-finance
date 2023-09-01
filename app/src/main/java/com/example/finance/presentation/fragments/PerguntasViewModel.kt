@@ -17,6 +17,13 @@ import com.example.finance.domain.usecase.GetPerguntaWithRespostasUseCase
 import com.example.finance.domain.usecase.GetPerguntasUseCase
 import com.example.finance.domain.usecase.InsertPerguntaUseCase
 import com.example.finance.domain.usecase.InsertRespostaUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class PerguntasViewModel (
@@ -25,18 +32,22 @@ class PerguntasViewModel (
     private val getPerguntasUseCase: GetPerguntasUseCase,
     private val getPerguntaWithRespostasUseCase: GetPerguntaWithRespostasUseCase
 ): ViewModel() {
-    fun getAllPerguntas(): LiveData<PerguntaState> = liveData {
-        emit(PerguntaState.Loading)
-        val state = try {
-            val perguntas = getPerguntasUseCase()
-            PerguntaState.Success(
-                pergunta = perguntas
-            )
-        } catch (exception: Exception) {
-            Log.e("Error", exception.message.toString())
-            PerguntaState.Error(exception.message.toString())
+
+    private val _state = MutableSharedFlow<PerguntaState>()
+    val state: SharedFlow<PerguntaState> = _state
+
+    init {
+        getAllPerguntas()
+    }
+    private fun getAllPerguntas() = viewModelScope.launch {
+        getPerguntasUseCase().flowOn(Dispatchers.Main)
+            .onStart {
+            _state.emit(PerguntaState.Loading)
+        }.catch {
+            _state.emit(PerguntaState.Error("Erro"))
+        }.collect{perguntas ->
+            _state.emit(PerguntaState.Success(perguntas))
         }
-        emit(state)
     }
 
     fun getPerguntasWithRespostas(idPergunta: Int): LiveData<PerguntaWithRespostasDomain> = liveData {
@@ -57,7 +68,6 @@ class PerguntasViewModel (
 
 
     class Factory : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(
             modelClass: Class<T>,
             extras: CreationExtras

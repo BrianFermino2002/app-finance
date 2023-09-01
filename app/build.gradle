@@ -5,7 +5,7 @@ plugins {
     id("androidx.navigation.safeargs")
 
 }
-
+apply plugin: 'kotlin-kapt'
 android {
     namespace 'com.example.finance'
     compileSdk 33
@@ -70,6 +70,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
 
     //Room
+    implementation "androidx.room:room-ktx:2.5.2"
     implementation "androidx.room:room-runtime:2.5.2"
     kapt "androidx.room:room-compiler:2.5.2"
 

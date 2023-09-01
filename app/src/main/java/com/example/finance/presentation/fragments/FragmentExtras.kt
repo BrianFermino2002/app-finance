@@ -22,7 +22,7 @@ class FragmentExtras: Fragment() {
         binding = FragmentExtrasBinding.inflate(inflater, container, false)
 
         binding.ibIrPerguntas.setOnClickListener {
-            val intent = Intent(activity, PerguntasActivity::class.java)
+            val intent = Intent(requireContext().applicationContext, PerguntasActivity::class.java)
             startActivity(intent)
         }
         return binding.root
