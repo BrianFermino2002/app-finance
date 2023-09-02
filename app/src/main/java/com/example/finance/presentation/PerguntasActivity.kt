@@ -13,10 +13,12 @@ import com.example.finance.R
 import com.example.finance.data.Nivel
 import com.example.finance.databinding.ActivityMainBinding
 import com.example.finance.databinding.ActivityPerguntasBinding
+import com.example.finance.domain.model.PerguntaDomain
 import com.example.finance.presentation.fragments.PerguntaState
 import com.example.finance.presentation.fragments.PerguntasViewModel
 import com.example.finance.presentation.fragments.UserState
 import com.example.finance.presentation.fragments.UserViewModel
+import com.example.finance.presentation.util.CompanionPerguntasRespostas
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -25,6 +27,9 @@ class PerguntasActivity : AppCompatActivity() {
     private val viewModel: PerguntasViewModel by viewModels {
         PerguntasViewModel.Factory()
     }
+    private lateinit var listaDePerguntas: List<PerguntaDomain>
+    private var currentIndex = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ThemeManager.setCustomizedThemes(
@@ -44,15 +49,26 @@ class PerguntasActivity : AppCompatActivity() {
 
                 }
                 is PerguntaState.Success -> {
-                    it.pergunta.forEach {
-                        binding.tvTest.text = it.enunciado.toString()
-                    }
-                    //binding.tvTest.setText(it.pergunta.get(0).enunciado)
+                    listaDePerguntas = it.pergunta
+                    comecarJogo()
                 }
 
-                PerguntaState.Empty -> viewModel.insertPergunta("a", Nivel.INICIANTE)
+                PerguntaState.Empty -> {
+                    val perguntas = CompanionPerguntasRespostas.criarPerguntas()
+                    perguntas.forEach{
+                        viewModel.insertPergunta(it.enunciado, it.nivel)
+                    }
+                }
             }
         }
+    }
+
+    fun comecarJogo(){
+        val perguntasFiltradas = listaDePerguntas.filter{
+            it.nivel == Nivel.INICIANTE
+        }
+
+        binding.tvPergunta.text = perguntasFiltradas[0].enunciado
     }
 
     fun <T> Flow<T>.observe(owner: LifecycleOwner, observe: (T) -> Unit) {
