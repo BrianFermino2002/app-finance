@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
                     binding.pbLoading.isVisible = true
                 }
 
+                UserState.Empty -> TODO()
             }
         }
     }

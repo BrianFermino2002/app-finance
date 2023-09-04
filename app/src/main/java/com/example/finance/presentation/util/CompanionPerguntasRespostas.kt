@@ -1,7 +1,6 @@
 package com.example.finance.presentation.util
 
 import com.example.finance.data.Nivel
-import com.example.finance.domain.model.PerguntaDomain
 
 
 class CompanionPerguntasRespostas{

@@ -5,9 +5,6 @@ import com.example.finance.data.entity.Lancamento
 import com.example.finance.data.mapper.toDomain
 import com.example.finance.data.mapper.toEntity
 import com.example.finance.domain.model.LancamentoDomain
-import com.example.finance.domain.model.PerguntaDomain
-import com.example.finance.domain.model.PerguntaWithRespostasDomain
-import com.example.finance.domain.model.RespostaDomain
 import com.example.finance.domain.model.UserDomain
 import com.example.finance.domain.model.UserWithLancamentoDomain
 import com.example.finance.domain.repository.UserRepository
@@ -23,13 +20,6 @@ class UserRepositoryImpl(private val dao: UserDAO): UserRepository {
         dao.getUser(nome).toDomain()
     }
 
-    override suspend fun getPerguntas(): Flow<List<PerguntaDomain>> = withContext(Dispatchers.IO){
-        dao.getPerguntas().map {
-            it.map{
-                it.toDomain()
-            }
-        }
-    }
 
     override suspend fun insert(user: UserDomain) = withContext(Dispatchers.IO){
         dao.insert(user.toEntity())
@@ -49,13 +39,6 @@ class UserRepositoryImpl(private val dao: UserDAO): UserRepository {
             )
         }
 
-    override suspend fun insertPergunta(pergunta: PerguntaDomain) = withContext(Dispatchers.IO){
-        dao.insert(pergunta.toEntity())
-    }
-
-    override suspend fun insertResposta(resposta: RespostaDomain) = withContext(Dispatchers.IO){
-        dao.insert(resposta.toEntity())
-    }
 
     override suspend fun updateLancamento(lancamento: LancamentoDomain) = withContext(Dispatchers.IO){
         dao.update(lancamento.toEntity())
@@ -70,8 +53,4 @@ class UserRepositoryImpl(private val dao: UserDAO): UserRepository {
             dao.getLancamentoWithUser(userId).toDomain()
         }
 
-    override suspend fun getPerguntaWithRespostas(perguntaId: Int): PerguntaWithRespostasDomain =
-        withContext(Dispatchers.IO){
-        dao.getPerguntaWithResposta(perguntaId).toDomain()
-    }
 }

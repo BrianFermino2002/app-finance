@@ -14,14 +14,23 @@ import com.example.finance.data.repository.UserRepositoryImpl
 import com.example.finance.domain.model.UserDomain
 import com.example.finance.domain.usecase.GetAllUsersUseCase
 import com.example.finance.domain.usecase.InsertUserUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class UserViewModel(
 
     private val getAllUsersUseCase: GetAllUsersUseCase,
-    private val insertUserUseCase: InsertUserUseCase
-): ViewModel() {
+    private val insertUserUseCase: InsertUserUseCase,
 
+): ViewModel() {
+    private val _state = MutableSharedFlow<UserState>()
+    val state: SharedFlow<UserState> = _state
     fun getAllUser(nome: String): LiveData<UserState> = liveData {
         emit(UserState.Loading)
         val state = try {
@@ -37,11 +46,13 @@ class UserViewModel(
     }
 
 
+
+
     fun insert(name: String, salario: Double) = viewModelScope.launch {
         insertUserUseCase(UserDomain(name = name, salario = salario, nivel = Nivel.INICIANTE))
     }
 
-    class Factory: ViewModelProvider.Factory{
+    class Factory(): ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>,
             extras: CreationExtras
                                             ): T {

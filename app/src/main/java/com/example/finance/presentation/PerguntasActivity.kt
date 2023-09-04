@@ -11,23 +11,19 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.finance.R
 import com.example.finance.data.Nivel
-import com.example.finance.databinding.ActivityMainBinding
 import com.example.finance.databinding.ActivityPerguntasBinding
-import com.example.finance.domain.model.PerguntaDomain
-import com.example.finance.presentation.fragments.PerguntaState
-import com.example.finance.presentation.fragments.PerguntasViewModel
-import com.example.finance.presentation.fragments.UserState
 import com.example.finance.presentation.fragments.UserViewModel
 import com.example.finance.presentation.util.CompanionPerguntasRespostas
+import com.example.finance.presentation.util.PerguntaLoad
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class PerguntasActivity : AppCompatActivity() {
     private val binding by lazy{ ActivityPerguntasBinding.inflate(layoutInflater)}
-    private val viewModel: PerguntasViewModel by viewModels {
-        PerguntasViewModel.Factory()
+    private val viewModel: UserViewModel by viewModels {
+        UserViewModel.Factory()
     }
-    private lateinit var listaDePerguntas: List<PerguntaDomain>
+    private lateinit var listaDePerguntas: List<PerguntaLoad>
     private var currentIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +32,11 @@ class PerguntasActivity : AppCompatActivity() {
             this,
             ThemeStorage.getThemeColor(this)
         )
-        observeStates()
+        /*observeStates()*/
         setContentView(binding.root)
     }
 
-    private fun observeStates(){
+    /*private fun observeStates(){
 
         viewModel.state.observe(this){
             when(it){
@@ -61,7 +57,7 @@ class PerguntasActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+    }*/
 
     fun comecarJogo(){
         val perguntasFiltradas = listaDePerguntas.filter{
