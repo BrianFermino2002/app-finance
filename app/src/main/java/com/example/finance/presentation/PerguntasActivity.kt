@@ -59,13 +59,6 @@ class PerguntasActivity : AppCompatActivity() {
         }
     }*/
 
-    fun comecarJogo(){
-        val perguntasFiltradas = listaDePerguntas.filter{
-            it.nivel == Nivel.INICIANTE
-        }
-
-        binding.tvPergunta.text = perguntasFiltradas[0].enunciado
-    }
 
     fun <T> Flow<T>.observe(owner: LifecycleOwner, observe: (T) -> Unit) {
         owner.lifecycleScope.launch {

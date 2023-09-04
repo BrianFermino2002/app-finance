@@ -14,6 +14,7 @@ import com.example.finance.data.repository.UserRepositoryImpl
 import com.example.finance.domain.model.UserDomain
 import com.example.finance.domain.usecase.GetAllUsersUseCase
 import com.example.finance.domain.usecase.InsertUserUseCase
+import com.example.finance.presentation.HomeActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -31,18 +32,24 @@ class UserViewModel(
 ): ViewModel() {
     private val _state = MutableSharedFlow<UserState>()
     val state: SharedFlow<UserState> = _state
-    fun getAllUser(nome: String): LiveData<UserState> = liveData {
-        emit(UserState.Loading)
-        val state = try {
-            val user = getAllUsersUseCase(nome)
-            UserState.Success(
-                user = user
-            )
-        } catch (exception: Exception) {
-            Log.e("Error", exception.message.toString())
-            UserState.Error(exception.message.toString())
-        }
-        emit(state)
+
+    init {
+        getAllUser(HomeActivity.EXTRA_USERNAME)
+    }
+    fun getAllUser(nome: String)=  viewModelScope.launch {
+        getAllUsersUseCase(nome)
+            .flowOn(Dispatchers.Main)
+            .onStart {
+                _state.emit(UserState.Loading)
+            }.catch{
+                _state.emit(UserState.Error("Error"))
+            }.collect{user ->
+                if(user.name == ""){
+                    _state.emit(UserState.Empty)
+                } else{
+                    _state.emit(UserState.Success(user))
+                }
+            }
     }
 
 

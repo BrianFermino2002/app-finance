@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface UserDAO {
     @Query("SELECT * FROM user WHERE name = :user")
-    fun getUser(user: String): UserEntity
+    fun getUser(user: String): Flow<UserEntity>
 
     @Insert
     fun insert(user:UserEntity)

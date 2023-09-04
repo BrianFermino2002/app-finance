@@ -16,8 +16,10 @@ import kotlinx.coroutines.withContext
 
 class UserRepositoryImpl(private val dao: UserDAO): UserRepository {
 
-    override suspend fun getUser(nome: String): UserDomain  = withContext(Dispatchers.IO){
-        dao.getUser(nome).toDomain()
+    override suspend fun getUser(nome: String): Flow<UserDomain>  = withContext(Dispatchers.IO){
+        dao.getUser(nome).map{
+            it.toDomain()
+        }
     }
 
 

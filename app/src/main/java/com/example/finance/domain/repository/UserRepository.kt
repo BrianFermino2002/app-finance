@@ -6,7 +6,7 @@ import com.example.finance.domain.model.UserWithLancamentoDomain
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-    suspend fun getUser(nome: String): UserDomain
+    suspend fun getUser(nome: String): Flow<UserDomain>
     suspend fun insert(user: UserDomain)
     suspend fun insertLancamento(lancamento: LancamentoDomain)
     suspend fun updateLancamento(lancamento: LancamentoDomain)
