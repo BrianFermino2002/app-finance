@@ -20,6 +20,10 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val EXTRA_USERNAME = "extra_username"
+    }
+
     private val viewModel: UserViewModel by viewModels {
         UserViewModel.Factory()
     }
@@ -44,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun observeStates(nome: String){
+        viewModel.getAllUser(nome)
         viewModel.state.observe(this){
             when(it){
                 UserState.Empty -> {
@@ -52,7 +57,12 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra(CadastroActivity.EXTRA_USERNAME, tfnome.text.toString())
                     startActivity(intent)
                 }
-                is UserState.Error -> print("Error")
+                is UserState.Error ->{
+                    binding.pbLoading.isVisible = false
+                    val intent = Intent(this, CadastroActivity::class.java)
+                    intent.putExtra(CadastroActivity.EXTRA_USERNAME, tfnome.text.toString())
+                    startActivity(intent)
+                }
                 UserState.Loading -> binding.pbLoading.isVisible = true
                 is UserState.Success -> {
                     binding.pbLoading.isVisible = false
@@ -63,26 +73,7 @@ class MainActivity : AppCompatActivity() {
                     finish()
                 }
             }
-            viewModel.getAllUser(nome)
         }
-        /*viewModel.getAllUser(tfnome.text.toString()).observe(this){
-            when(it){
-                is UserState.Success -> {
-
-                }
-                is UserState.Error -> {
-                    binding.pbLoading.isVisible = false
-                    val intent = Intent(this, CadastroActivity::class.java)
-                    intent.putExtra(CadastroActivity.EXTRA_USERNAME, tfnome.text.toString())
-                    startActivity(intent)
-                }
-                UserState.Loading -> {
-                    binding.pbLoading.isVisible = true
-                }
-
-                UserState.Empty -> TODO()
-            }
-        }*/
     }
 
     fun <T> Flow<T>.observe(owner: LifecycleOwner, observe: (T) -> Unit) {

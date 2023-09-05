@@ -12,11 +12,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.finance.R
 import com.example.finance.data.Nivel
 import com.example.finance.databinding.ActivityPerguntasBinding
+import com.example.finance.domain.model.UserDomain
+import com.example.finance.presentation.fragments.UserState
 import com.example.finance.presentation.fragments.UserViewModel
 import com.example.finance.presentation.util.CompanionPerguntasRespostas
 import com.example.finance.presentation.util.PerguntaLoad
+import com.example.finance.presentation.util.RespostaLoad
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import org.apache.xmlbeans.impl.xb.xsdschema.Attribute.Use
 
 class PerguntasActivity : AppCompatActivity() {
     private val binding by lazy{ ActivityPerguntasBinding.inflate(layoutInflater)}
@@ -24,6 +28,9 @@ class PerguntasActivity : AppCompatActivity() {
         UserViewModel.Factory()
     }
     private lateinit var listaDePerguntas: List<PerguntaLoad>
+    private lateinit var listaDeRespostas: List<RespostaLoad>
+    private lateinit var listaDePerguntasNivel: List<PerguntaLoad>
+
     private var currentIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,33 +39,56 @@ class PerguntasActivity : AppCompatActivity() {
             this,
             ThemeStorage.getThemeColor(this)
         )
-        /*observeStates()*/
+
+        listaDePerguntas = CompanionPerguntasRespostas.criarPerguntas()
+        listaDeRespostas = CompanionPerguntasRespostas.criarRespostas()
+
+        observeStates(HomeActivity.nome)
+        showNextQuestion()
         setContentView(binding.root)
     }
 
-    /*private fun observeStates(){
+    fun showNextQuestion() {
+        if (currentIndex < 10) {
+            val pergunta = listaDePerguntas[currentIndex]
+            val respostas = listaDeRespostas.filter { it.idPergunta == pergunta.id }
 
+            binding.tvPergunta.text = pergunta.enunciado
+            binding.tvAlt01.text = respostas[0].descricao
+            binding.tvAlt02.text = respostas[1].descricao
+            binding.tvAlt03.text = respostas[2].descricao
+            binding.tvAlt04.text = respostas[3].descricao
+
+            currentIndex++
+        } else {
+            // Todas as perguntas foram exibidas.
+            // Você pode fazer algo aqui, como encerrar a atividade ou mostrar um resultado final.
+        }
+    }
+
+    private fun observeStates(nome: String){
+        viewModel.getAllUser(nome)
         viewModel.state.observe(this){
             when(it){
-                is PerguntaState.Error -> print("a")
-                PerguntaState.Loading -> {
-
+                UserState.Empty -> {
                 }
-                is PerguntaState.Success -> {
-                    listaDePerguntas = it.pergunta
-                    comecarJogo()
+                is UserState.Error ->{
                 }
-
-                PerguntaState.Empty -> {
-                    val perguntas = CompanionPerguntasRespostas.criarPerguntas()
-                    perguntas.forEach{
-                        viewModel.insertPergunta(it.enunciado, it.nivel)
-                    }
+                UserState.Loading -> {
+                }
+                is UserState.Success -> {
+                    binding.tvNivel.text= it.user.nivel.toString()
+                    setLevel(it.user)
                 }
             }
         }
-    }*/
+    }
 
+    fun setLevel(user: UserDomain){
+        listaDePerguntasNivel = listaDePerguntas.filter {
+            it.nivel == user.nivel
+        }
+    }
 
     fun <T> Flow<T>.observe(owner: LifecycleOwner, observe: (T) -> Unit) {
         owner.lifecycleScope.launch {

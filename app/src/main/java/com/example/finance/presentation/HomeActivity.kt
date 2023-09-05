@@ -16,6 +16,7 @@ class HomeActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_USERID = "extra_userid"
         const val EXTRA_USERNAME = "extra_username"
+        lateinit var nome: String
         lateinit var id: String
     }
 
@@ -28,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
             ThemeStorage.getThemeColor(this)
         )
         id = intent.getStringExtra(EXTRA_USERID)!!
-        EXTRA_USERNAME to intent.getStringExtra(EXTRA_USERNAME)
+        nome = intent.getStringExtra(EXTRA_USERNAME)!!
         setContentView(binding.root)
         val navController = findNavController(R.id.nav_host_fragment)
         setupWithNavController(binding.bottomNavigation, navController)

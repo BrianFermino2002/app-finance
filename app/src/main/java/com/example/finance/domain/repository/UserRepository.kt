@@ -9,6 +9,7 @@ interface UserRepository {
     suspend fun getUser(nome: String): Flow<UserDomain>
     suspend fun insert(user: UserDomain)
     suspend fun insertLancamento(lancamento: LancamentoDomain)
+    suspend fun updateUsuario(user: UserDomain)
     suspend fun updateLancamento(lancamento: LancamentoDomain)
     suspend fun deleteLancamento(lancamento: LancamentoDomain)
     suspend fun getLancamentoWithUser(userId: Int): UserWithLancamentoDomain

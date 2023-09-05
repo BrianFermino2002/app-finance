@@ -42,6 +42,9 @@ class UserRepositoryImpl(private val dao: UserDAO): UserRepository {
         }
 
 
+    override suspend fun updateUsuario(user: UserDomain) = withContext(Dispatchers.IO) {
+        dao.update(user.toEntity())
+    }
     override suspend fun updateLancamento(lancamento: LancamentoDomain) = withContext(Dispatchers.IO){
         dao.update(lancamento.toEntity())
     }

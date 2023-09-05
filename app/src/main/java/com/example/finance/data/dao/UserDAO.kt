@@ -23,6 +23,8 @@ interface UserDAO {
     fun insert(lancamento: LancamentoEntity)
 
     @Update
+    fun update(user: UserEntity)
+    @Update
     fun update(lancamento: LancamentoEntity)
 
     @Delete
