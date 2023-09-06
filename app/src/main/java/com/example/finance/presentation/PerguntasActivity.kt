@@ -1,8 +1,10 @@
 package com.example.finance.presentation
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -24,14 +26,18 @@ import org.apache.xmlbeans.impl.xb.xsdschema.Attribute.Use
 
 class PerguntasActivity : AppCompatActivity() {
     private val binding by lazy{ ActivityPerguntasBinding.inflate(layoutInflater)}
+
     private val viewModel: UserViewModel by viewModels {
         UserViewModel.Factory()
     }
     private lateinit var listaDePerguntas: List<PerguntaLoad>
     private lateinit var listaDeRespostas: List<RespostaLoad>
     private lateinit var listaDePerguntasNivel: List<PerguntaLoad>
+    private lateinit var respostaCerta: List<RespostaLoad>
 
     private var currentIndex = 0
+    private var pontuacao = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +52,50 @@ class PerguntasActivity : AppCompatActivity() {
         observeStates(HomeActivity.nome)
         showNextQuestion()
         setContentView(binding.root)
+
+        binding.cvAlt01.setOnClickListener {
+            if(respostaCerta[0].descricao.equals(binding.tvAlt01.text)){
+                binding.cvAlt01.setCardBackgroundColor(R.id.greenColor)
+                atualizaPonto()
+            } else{
+                showNextQuestion()
+            }
+        }
+
+        binding.cvAlt02.setOnClickListener {
+            if (respostaCerta[0].descricao.equals(binding.tvAlt02.text)) {
+                binding.cvAlt02.setCardBackgroundColor(R.id.greenColor)
+                atualizaPonto()
+            } else{
+                showNextQuestion()
+            }
+        }
+
+        binding.cvAlt03.setOnClickListener {
+            if (respostaCerta[0].descricao.equals(binding.tvAlt03.text)) {
+                binding.cvAlt03.setCardBackgroundColor(R.id.greenColor)
+                atualizaPonto()
+            } else{
+                showNextQuestion()
+            }
+        }
+
+        binding.cvAlt04.setOnClickListener {
+            if (respostaCerta[0].descricao.equals(binding.tvAlt04.text)) {
+                binding.cvAlt04.setCardBackgroundColor(R.id.greenColor)
+                atualizaPonto()
+            } else{
+                showNextQuestion()
+            }
+        }
     }
+
 
     fun showNextQuestion() {
         if (currentIndex < 10) {
             val pergunta = listaDePerguntas[currentIndex]
             val respostas = listaDeRespostas.filter { it.idPergunta == pergunta.id }
+            respostaCerta  = listaDeRespostas.filter {it.idPergunta == pergunta.id && it.correta}
 
             binding.tvPergunta.text = pergunta.enunciado
             binding.tvAlt01.text = respostas[0].descricao
@@ -61,9 +105,13 @@ class PerguntasActivity : AppCompatActivity() {
 
             currentIndex++
         } else {
-            // Todas as perguntas foram exibidas.
-            // Você pode fazer algo aqui, como encerrar a atividade ou mostrar um resultado final.
+            Toast.makeText(this, pontuacao.toString(), Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun atualizaPonto(){
+        pontuacao++
+        showNextQuestion()
     }
 
     private fun observeStates(nome: String){
