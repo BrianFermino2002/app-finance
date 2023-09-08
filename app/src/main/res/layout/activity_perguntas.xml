@@ -126,4 +126,14 @@
             tools:text="Opt4" />
 
     </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:id="@+id/btn_proxima"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Próxima"
+        app:layout_constraintTop_toBottomOf="@id/cv_alt04"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

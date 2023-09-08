@@ -35,6 +35,7 @@ class PerguntasActivity : AppCompatActivity() {
     private lateinit var listaDePerguntasNivel: List<PerguntaLoad>
     private lateinit var respostaCerta: List<RespostaLoad>
 
+    var originalCardViewColor: Int = 0
     private var currentIndex = 0
     private var pontuacao = 0
 
@@ -45,7 +46,10 @@ class PerguntasActivity : AppCompatActivity() {
             this,
             ThemeStorage.getThemeColor(this)
         )
+        originalCardViewColor = binding.cvAlt01.cardBackgroundColor.defaultColor
 
+
+        binding.btnProxima.isVisible = false
         listaDePerguntas = CompanionPerguntasRespostas.criarPerguntas()
         listaDeRespostas = CompanionPerguntasRespostas.criarRespostas()
 
@@ -54,39 +58,52 @@ class PerguntasActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.cvAlt01.setOnClickListener {
+            binding.btnProxima.isVisible = true
             if(respostaCerta[0].descricao.equals(binding.tvAlt01.text)){
-                binding.cvAlt01.setCardBackgroundColor(R.id.greenColor)
+                binding.cvAlt01.setCardBackgroundColor(getColor(R.color.verde_claro))
                 atualizaPonto()
             } else{
-                showNextQuestion()
+                binding.cvAlt01.setCardBackgroundColor(getColor(R.color.pie_graph_comida))
             }
         }
 
         binding.cvAlt02.setOnClickListener {
+            binding.btnProxima.isVisible = true
             if (respostaCerta[0].descricao.equals(binding.tvAlt02.text)) {
-                binding.cvAlt02.setCardBackgroundColor(R.id.greenColor)
+                binding.cvAlt02.setCardBackgroundColor(getColor(R.color.verde_claro))
                 atualizaPonto()
             } else{
-                showNextQuestion()
+                binding.cvAlt02.setCardBackgroundColor(getColor(R.color.pie_graph_comida))
             }
         }
 
         binding.cvAlt03.setOnClickListener {
+            binding.btnProxima.isVisible = true
             if (respostaCerta[0].descricao.equals(binding.tvAlt03.text)) {
-                binding.cvAlt03.setCardBackgroundColor(R.id.greenColor)
+                binding.cvAlt03.setCardBackgroundColor(getColor(R.color.verde_claro))
                 atualizaPonto()
             } else{
-                showNextQuestion()
+                binding.cvAlt03.setCardBackgroundColor(getColor(R.color.pie_graph_comida))
             }
         }
 
         binding.cvAlt04.setOnClickListener {
+            binding.btnProxima.isVisible = true
             if (respostaCerta[0].descricao.equals(binding.tvAlt04.text)) {
-                binding.cvAlt04.setCardBackgroundColor(R.id.greenColor)
+                binding.cvAlt04.setCardBackgroundColor(getColor(R.color.verde_claro))
                 atualizaPonto()
             } else{
-                showNextQuestion()
+                binding.cvAlt04.setCardBackgroundColor(getColor(R.color.pie_graph_comida))
             }
+        }
+
+        binding.btnProxima.setOnClickListener {
+            binding.btnProxima.isVisible = false
+            binding.cvAlt01.setCardBackgroundColor(originalCardViewColor)
+            binding.cvAlt02.setCardBackgroundColor(originalCardViewColor)
+            binding.cvAlt03.setCardBackgroundColor(originalCardViewColor)
+            binding.cvAlt04.setCardBackgroundColor(originalCardViewColor)
+            showNextQuestion()
         }
     }
 
@@ -111,7 +128,6 @@ class PerguntasActivity : AppCompatActivity() {
 
     fun atualizaPonto(){
         pontuacao++
-        showNextQuestion()
     }
 
     private fun observeStates(nome: String){
