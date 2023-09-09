@@ -26,6 +26,7 @@ import org.apache.xmlbeans.impl.xb.xsdschema.Attribute.Use
 
 class PerguntasActivity : AppCompatActivity() {
     private val binding by lazy{ ActivityPerguntasBinding.inflate(layoutInflater)}
+    private lateinit var user: UserDomain
 
     private val viewModel: UserViewModel by viewModels {
         UserViewModel.Factory()
@@ -54,15 +55,16 @@ class PerguntasActivity : AppCompatActivity() {
         listaDeRespostas = CompanionPerguntasRespostas.criarRespostas()
 
         observeStates(HomeActivity.nome)
-        showNextQuestion()
         setContentView(binding.root)
 
         binding.cvAlt01.setOnClickListener {
             binding.btnProxima.isVisible = true
             if(respostaCerta[0].descricao.equals(binding.tvAlt01.text)){
                 binding.cvAlt01.setCardBackgroundColor(getColor(R.color.verde_claro))
+                desabilitaBotoes(binding)
                 atualizaPonto()
             } else{
+                desabilitaBotoes(binding)
                 binding.cvAlt01.setCardBackgroundColor(getColor(R.color.pie_graph_comida))
             }
         }
@@ -71,8 +73,10 @@ class PerguntasActivity : AppCompatActivity() {
             binding.btnProxima.isVisible = true
             if (respostaCerta[0].descricao.equals(binding.tvAlt02.text)) {
                 binding.cvAlt02.setCardBackgroundColor(getColor(R.color.verde_claro))
+                desabilitaBotoes(binding)
                 atualizaPonto()
             } else{
+                desabilitaBotoes(binding)
                 binding.cvAlt02.setCardBackgroundColor(getColor(R.color.pie_graph_comida))
             }
         }
@@ -81,8 +85,10 @@ class PerguntasActivity : AppCompatActivity() {
             binding.btnProxima.isVisible = true
             if (respostaCerta[0].descricao.equals(binding.tvAlt03.text)) {
                 binding.cvAlt03.setCardBackgroundColor(getColor(R.color.verde_claro))
+                desabilitaBotoes(binding)
                 atualizaPonto()
             } else{
+                desabilitaBotoes(binding)
                 binding.cvAlt03.setCardBackgroundColor(getColor(R.color.pie_graph_comida))
             }
         }
@@ -91,14 +97,17 @@ class PerguntasActivity : AppCompatActivity() {
             binding.btnProxima.isVisible = true
             if (respostaCerta[0].descricao.equals(binding.tvAlt04.text)) {
                 binding.cvAlt04.setCardBackgroundColor(getColor(R.color.verde_claro))
+                desabilitaBotoes(binding)
                 atualizaPonto()
             } else{
                 binding.cvAlt04.setCardBackgroundColor(getColor(R.color.pie_graph_comida))
+                desabilitaBotoes(binding)
             }
         }
 
         binding.btnProxima.setOnClickListener {
             binding.btnProxima.isVisible = false
+            habilitaBotoes(binding)
             binding.cvAlt01.setCardBackgroundColor(originalCardViewColor)
             binding.cvAlt02.setCardBackgroundColor(originalCardViewColor)
             binding.cvAlt03.setCardBackgroundColor(originalCardViewColor)
@@ -107,10 +116,23 @@ class PerguntasActivity : AppCompatActivity() {
         }
     }
 
+    fun desabilitaBotoes(binding: ActivityPerguntasBinding){
+        binding.cvAlt01.isClickable = false
+        binding.cvAlt02.isClickable = false
+        binding.cvAlt03.isClickable = false
+        binding.cvAlt04.isClickable = false
+    }
+
+    fun habilitaBotoes(binding: ActivityPerguntasBinding){
+        binding.cvAlt01.isClickable = true
+        binding.cvAlt02.isClickable = true
+        binding.cvAlt03.isClickable = true
+        binding.cvAlt04.isClickable = true
+    }
 
     fun showNextQuestion() {
         if (currentIndex < 10) {
-            val pergunta = listaDePerguntas[currentIndex]
+            val pergunta = listaDePerguntasNivel[currentIndex]
             val respostas = listaDeRespostas.filter { it.idPergunta == pergunta.id }
             respostaCerta  = listaDeRespostas.filter {it.idPergunta == pergunta.id && it.correta}
 
@@ -122,7 +144,24 @@ class PerguntasActivity : AppCompatActivity() {
 
             currentIndex++
         } else {
-            Toast.makeText(this, pontuacao.toString(), Toast.LENGTH_LONG).show()
+            if(pontuacao >= 7){
+                val nivel = when(user.nivel){
+                    Nivel.INICIANTE -> Nivel.APRENDIZ
+                    Nivel.APRENDIZ -> Nivel.AVANCADO
+                    Nivel.AVANCADO -> Nivel.INCRIVEL
+                    else -> Nivel.INICIANTE
+                }
+                viewModel.updateUsuario(
+                    id = user.id,
+                    nome = user.name,
+                    salario = user.salario,
+                    nivel = nivel
+                )
+                currentIndex = 0
+                pontuacao = 0
+            }
+            currentIndex = 0
+            pontuacao = 0
         }
     }
 
@@ -141,8 +180,10 @@ class PerguntasActivity : AppCompatActivity() {
                 UserState.Loading -> {
                 }
                 is UserState.Success -> {
+                    user = it.user
                     binding.tvNivel.text= it.user.nivel.toString()
-                    setLevel(it.user)
+                    setLevel(user)
+                    showNextQuestion()
                 }
             }
         }
