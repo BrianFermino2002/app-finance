@@ -113,8 +113,24 @@ class PerguntasActivity : AppCompatActivity() {
             binding.cvAlt03.setCardBackgroundColor(originalCardViewColor)
             binding.cvAlt04.setCardBackgroundColor(originalCardViewColor)
             showNextQuestion()
+
+        }
+
+        binding.btnReiniciar.setOnClickListener {
+            binding.tvFimJogo.isVisible = false
+            binding.btnReiniciar.isVisible = false
+            binding.btnSair.isVisible = false
+            viewModel.updateUsuario(id = user.id,
+                nome = user.name,
+                salario = user.salario,
+                nivel = Nivel.INICIANTE)
+        }
+
+        binding.btnSair.setOnClickListener {
+            finish()
         }
     }
+
 
     fun desabilitaBotoes(binding: ActivityPerguntasBinding){
         binding.cvAlt01.isClickable = false
@@ -145,23 +161,28 @@ class PerguntasActivity : AppCompatActivity() {
             currentIndex++
         } else {
             if(pontuacao >= 7){
+                Toast.makeText(this, "Você upou seu Nível! Parabéns", Toast.LENGTH_LONG).show()
                 val nivel = when(user.nivel){
                     Nivel.INICIANTE -> Nivel.APRENDIZ
                     Nivel.APRENDIZ -> Nivel.AVANCADO
                     Nivel.AVANCADO -> Nivel.INCRIVEL
                     else -> Nivel.INICIANTE
                 }
+
+                currentIndex = 0
+                pontuacao = 0
                 viewModel.updateUsuario(
                     id = user.id,
                     nome = user.name,
                     salario = user.salario,
                     nivel = nivel
                 )
+            }else{
+                Toast.makeText(this, "Você Falhou! tente novamente", Toast.LENGTH_LONG).show()
                 currentIndex = 0
                 pontuacao = 0
             }
-            currentIndex = 0
-            pontuacao = 0
+
         }
     }
 
@@ -182,11 +203,23 @@ class PerguntasActivity : AppCompatActivity() {
                 is UserState.Success -> {
                     user = it.user
                     binding.tvNivel.text= it.user.nivel.toString()
-                    setLevel(user)
-                    showNextQuestion()
+                    if(user.nivel == Nivel.INCRIVEL){
+                        desabilitaElementos()
+                        habilitaFim()
+                    }else{
+                        setLevel(user)
+                        showNextQuestion()
+                    }
+
                 }
             }
         }
+    }
+
+    fun habilitaFim() {
+        binding.tvFimJogo.isVisible = true
+        binding.btnReiniciar.isVisible = true
+        binding.btnSair.isVisible = true
     }
 
     fun setLevel(user: UserDomain){
@@ -195,11 +228,24 @@ class PerguntasActivity : AppCompatActivity() {
         }
     }
 
+    fun desabilitaElementos(){
+        binding.tvNivel.isVisible = false
+        binding.cvAlt01.isVisible = false
+        binding.cvAlt02.isVisible = false
+        binding.cvAlt03.isVisible = false
+        binding.cvAlt04.isVisible = false
+        binding.tvPergunta.isVisible = false
+    }
     fun <T> Flow<T>.observe(owner: LifecycleOwner, observe: (T) -> Unit) {
         owner.lifecycleScope.launch {
             owner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 this@observe.collect(observe)
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        finish()
     }
 }

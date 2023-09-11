@@ -11,6 +11,8 @@
     <string name="button">Button</string>
     <string name="secondary_color">Secondary color</string>
     <string name="email_icon">email icon</string>
+    <string name="texto_fim_jogo">Você atingiu o nível Máximo! Agora você tem 2 escolhas: Reiniciar
+        do nível INICIANTE para aprender mais ou sair dessa tela</string>
     <string-array name="categorias">
         <item>Casa</item>
         <item>Trabalho</item>

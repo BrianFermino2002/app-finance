@@ -75,7 +75,6 @@ class UserViewModel(
                 nivel = nivel
             )
         )
-        getAllUser(nome)
     }
 
     fun insert(name: String, salario: Double) = viewModelScope.launch {
