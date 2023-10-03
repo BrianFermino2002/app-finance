@@ -7,12 +7,14 @@ import com.example.finance.domain.model.UserDomain
         id = id,
         name = name,
         salario = salario,
-        nivel = nivel
+        nivel = nivel,
+        idade = idade
     )
 
     fun UserEntity.toDomain() = UserDomain(
         id = id,
         name = name,
         salario = salario,
-        nivel = nivel
+        nivel = nivel,
+        idade = idade
     )

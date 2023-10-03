@@ -1,26 +1,14 @@
 package com.example.finance.presentation.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ListAdapter
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.example.finance.R
 import com.example.finance.databinding.HeaderItemBinding
 import com.example.finance.databinding.LancamentoItemBinding
-import com.example.finance.domain.model.Lancamento
 import com.example.finance.domain.model.LancamentoDomain
 import com.example.finance.extension.toListOfDataItem
-import com.example.finance.presentation.dialog.DialogAtualizarLancamento
-import com.example.finance.presentation.dialog.DialogInserirLancamento
-import com.example.finance.presentation.fragments.LancamentoViewModel
-import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

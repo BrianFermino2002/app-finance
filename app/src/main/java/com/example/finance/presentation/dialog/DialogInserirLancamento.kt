@@ -3,23 +3,18 @@ package com.example.finance.presentation.dialog
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
-import com.example.finance.data.CategoriaLancamentoEntity
-import com.example.finance.databinding.FragmentDialogLancamentoBinding
-import com.example.finance.domain.model.LancamentoDomain
+import com.example.finance.databinding.FragmentDialogAddlancBinding
 import com.google.android.material.datepicker.MaterialDatePicker
-import org.jetbrains.annotations.Nullable
 import java.lang.IllegalStateException
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class DialogInserirLancamento: DialogFragment() {
-lateinit var binding:FragmentDialogLancamentoBinding
+lateinit var binding:FragmentDialogAddlancBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,49 +25,38 @@ lateinit var binding:FragmentDialogLancamentoBinding
             ?: throw IllegalArgumentException("Ops, passe o titulo")
         return activity?.let{
             binding =
-                FragmentDialogLancamentoBinding.inflate(requireActivity().layoutInflater).apply {
+                FragmentDialogAddlancBinding.inflate(requireActivity().layoutInflater).apply {
                     tvTitulo.text = titleText
                 }
-            binding.etData.isEnabled = false
-            binding.btData.setOnClickListener {
 
+            binding.etData.setOnClickListener {
                 val datePicker =
                     MaterialDatePicker.Builder.datePicker()
                         .setTitleText("Seleione a data")
-                        .setInputMode(MaterialDatePicker.INPUT_MODE_TEXT)
+                        .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
                         .build()
                 datePicker.show(parentFragmentManager, "tag")
 
                 datePicker.addOnPositiveButtonClickListener {
-                    var data: String = SimpleDateFormat("dd/MM/yyy", Locale.getDefault()).format(it)
+                    val data: String = SimpleDateFormat("dd/MM/yyy", Locale.getDefault()).format(it)
                     binding.etData.setText(data)
                 }
-            }
 
-
-
-            var check = checkRB()
-            var categoria = checkCategoria()
-            binding.rgTipolanc.setOnCheckedChangeListener { group, i ->
-                check = checkRB()
+                binding.btAdd.setOnClickListener {
+                    setFragmentResult(
+                        FRAGMENT_RESULT, bundleOf(
+                            EDIT_TEXT_VALUE to binding.etLancamento.text.toString(),
+                            DATA_VALUE to binding.etData.text.toString(),
+                            EDIT_TEXT_DESCRIPTION to binding.etDescricao.text.toString()
+                        )
+                    )
+                    dismiss()
+                }
             }
 
             AlertDialog.Builder(it)
                 .setView(binding.root)
-                .setPositiveButton("Confirmar"){_, _ ->
-                setFragmentResult(
-                    FRAGMENT_RESULT, bundleOf(
-                        EDIT_TEXT_VALUE to binding.etLancamento.text.toString(),
-                        RADIO_BUTTON_VALUE to check?.text.toString(),
-                        DATA_VALUE to binding.etData.text.toString(),
-                        CATEGORIA_VALUE to checkCategoria().toString()
-                    )
-                )
-
-                }
-                .setNegativeButton("Cancelar"){_, _ ->
-                    dismiss()
-                }.create()
+                .create()
         }?:throw IllegalStateException("Activity cannot be Null")
     }
 
@@ -80,9 +64,8 @@ lateinit var binding:FragmentDialogLancamentoBinding
         const val TITLE_TEXT = "TITLE_TEXT"
         const val FRAGMENT_RESULT = "FRAGMENT_RESULT"
         const val EDIT_TEXT_VALUE = "EDIT_TEXT_VALUE"
-        const val RADIO_BUTTON_VALUE = "RADIO_BUTTON_VALUE"
+        const val EDIT_TEXT_DESCRIPTION = "EDIT_TEXT_DESCRIPTION"
         const val DATA_VALUE = "DATA_VALUE"
-        const val CATEGORIA_VALUE = "CATEGORIA_VALUE"
 
         fun show(
             title: String,
@@ -97,28 +80,6 @@ lateinit var binding:FragmentDialogLancamentoBinding
                 fragmentManager,
                 tag
             )
-        }
-    }
-
-    private fun checkRB(): RadioButton{
-        if(binding.rbCredito.isChecked){
-            return binding.rbCredito
-        } else {
-            return  binding.rbDebito
-        }
-    }
-
-    private fun checkCategoria(): CategoriaLancamentoEntity {
-        val selectedCategoriaPosition = binding.spCategoria.selectedItemPosition
-
-        return when (selectedCategoriaPosition) {
-            CategoriaLancamentoEntity.CASA.ordinal -> CategoriaLancamentoEntity.CASA
-            CategoriaLancamentoEntity.TRABALHO.ordinal -> CategoriaLancamentoEntity.TRABALHO
-            CategoriaLancamentoEntity.COMIDA.ordinal -> CategoriaLancamentoEntity.COMIDA
-            CategoriaLancamentoEntity.LAZER.ordinal -> CategoriaLancamentoEntity.LAZER
-            CategoriaLancamentoEntity.FACULDADE.ordinal -> CategoriaLancamentoEntity.FACULDADE
-            CategoriaLancamentoEntity.FAMILIA.ordinal -> CategoriaLancamentoEntity.FAMILIA
-            else -> throw IllegalStateException("Categoria inválida selecionada")
         }
     }
 }

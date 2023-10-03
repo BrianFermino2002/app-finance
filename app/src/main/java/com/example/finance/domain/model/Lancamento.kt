@@ -1,6 +1,7 @@
 package com.example.finance.domain.model
 
-import com.example.finance.data.CategoriaLancamentoEntity
+import androidx.room.ColumnInfo
+import java.time.LocalDateTime
 
 typealias LancamentoDomain = Lancamento
 
@@ -11,5 +12,6 @@ class Lancamento (
     val valor: Double,
     val idUsuario: Int,
     val dataEfet: String,
-    val categoria: CategoriaLancamentoEntity
+    val categoria: String,
+    val data: String = LocalDateTime.now().toString()
         )

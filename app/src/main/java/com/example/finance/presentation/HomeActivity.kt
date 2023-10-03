@@ -24,12 +24,8 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ThemeManager.setCustomizedThemes(
-            this,
-            ThemeStorage.getThemeColor(this)
-        )
-        id = intent.getStringExtra(EXTRA_USERID)!!
-        nome = intent.getStringExtra(EXTRA_USERNAME)!!
+
+
         setContentView(binding.root)
         val navController = findNavController(R.id.nav_host_fragment)
         setupWithNavController(binding.bottomNavigation, navController)

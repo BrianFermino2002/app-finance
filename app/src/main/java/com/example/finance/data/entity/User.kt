@@ -12,5 +12,6 @@ data class User (
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "salario") val salario: Double,
+    @ColumnInfo(name = "idade") val idade: Int,
     @ColumnInfo(name = "nivel") val nivel: Nivel
         )

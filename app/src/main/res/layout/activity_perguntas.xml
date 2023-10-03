@@ -4,168 +4,171 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.PerguntasActivity"
-    android:padding="16dp">
+    tools:context=".presentation.PerguntasActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/azul"
+        app:layout_constraintBottom_toTopOf="@id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_voltar"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="16dp"
+            android:contentDescription="Voltar"
+            android:src="@drawable/arrow_left_circle_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tv_nivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nível Fácil"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dvd_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginTop="5dp"
+            app:dividerThickness="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_nivel"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/DividerStyle"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@drawable/rounded_view"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"/>
 
     <TextView
-        android:id="@+id/tv_nivel"
+        android:id="@+id/tv_num_pergunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Nível Iniciante"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="16dp"
+        android:textSize="25sp"
+        tools:text="Pergunta X"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tv_pergunta"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_nivel"
+        tools:text="Quanto preciso economizar?"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_num_pergunta"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
-        tools:text="Quanto ganha um médico?"/>
+        android:justificationMode="inter_word"/>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cv_alt01"
+    <Button
+        android:id="@+id/btn_alt01"
+        style="@style/buttonMainStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
+        tools:text="R$1,00"
+        android:layout_marginRight="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_pergunta"
-        app:strokeWidth="3dp"
-        tools:ignore="TouchTargetSizeCheck">
-
-        <TextView
-            android:id="@+id/tv_alt01"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            tools:text="Opt1" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cv_alt02"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_alt01"
-        app:strokeWidth="3dp"
-        tools:ignore="TouchTargetSizeCheck">
-
-        <TextView
-            android:id="@+id/tv_alt02"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            tools:text="Opt2" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cv_alt03"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_alt02"
-        app:strokeWidth="3dp"
-        tools:ignore="TouchTargetSizeCheck">
-
-        <TextView
-            android:id="@+id/tv_alt03"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            tools:text="Opt3" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cv_alt04"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_alt03"
-        app:strokeWidth="3dp"
-        tools:ignore="TouchTargetSizeCheck">
-
-        <TextView
-            android:id="@+id/tv_alt04"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            tools:text="Opt4" />
-
-    </com.google.android.material.card.MaterialCardView>
+        android:textAllCaps="false"/>
 
     <Button
-        android:id="@+id/btn_proxima"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_alt02"
+        style="@style/buttonMainStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Próxima"
-        app:layout_constraintTop_toBottomOf="@id/cv_alt04"
+        tools:text="R$5,00"
+        android:layout_marginRight="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_alt01"
+        android:textAllCaps="false"/>
 
-    <TextView
-        android:id="@+id/tv_fim_jogo"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_alt03"
+        style="@style/buttonMainStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/texto_fim_jogo"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        tools:text="R$500,00"
+        android:layout_marginRight="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
-        android:visibility="gone"/>
-    
-    <Button
-        android:id="@+id/btn_reiniciar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reiniciar"
-        app:layout_constraintTop_toBottomOf="@id/tv_fim_jogo"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"/>
-    
+        app:layout_constraintTop_toBottomOf="@id/btn_alt02"
+        android:textAllCaps="false"/>
+
     <Button
-        android:id="@+id/btn_sair"
+        android:id="@+id/btn_alt04"
+        style="@style/buttonMainStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="R$525,50"
+        android:layout_marginRight="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_alt03"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_confirmar"
+        style="@style/buttonMainStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar Resposta"
+        android:layout_marginRight="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_alt04"
+        android:textAllCaps="false"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sair da tela"
-        android:layout_marginLeft="6dp"
-        app:layout_constraintStart_toEndOf="@id/btn_reiniciar"
-        app:layout_constraintTop_toBottomOf="@id/tv_fim_jogo"
-        android:visibility="gone"/>
-    
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="106dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="110dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

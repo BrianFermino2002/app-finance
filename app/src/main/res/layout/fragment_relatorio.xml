@@ -2,15 +2,164 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/btn_teste"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/azul"
+        app:layout_constraintBottom_toTopOf="@id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_total_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total na Carteira"
+            android:textSize="@dimen/totalcart"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <ImageView
+            android:id="@+id/iv_cartao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/credit_card_1"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_cart"
+            app:layout_constraintEnd_toStartOf="@id/tv_total_cart"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_valor_carteira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="R$ 12345,12"
+            app:layout_constraintStart_toEndOf="@id/iv_cartao"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_cart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/paragrafo"
+            android:layout_marginTop="10dp"
+            />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dvd_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginTop="16dp"
+            app:dividerThickness="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_valor_carteira"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/DividerStyle"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@drawable/rounded_view"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"/>
+
+    <TextView
+        android:id="@+id/tv_historico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gerar PDF e Excel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline6"
+        android:textSize="@dimen/titulo"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:text="Histórico Financeiro"/>
+
+    <org.eazegraph.lib.charts.ValueLineChart
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cubiclinechart"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        app:egUseCubic="true"
+        app:egUseOverlapFill="true"
+        android:layout_marginTop="16dp"
+        app:egCurveSmoothness="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        app:egLegendHeight="40dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_historico"/>
+
+    <TextView
+        android:id="@+id/tv_ultlanc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Últimos Lançamentos"
+        android:textStyle="bold"
+        android:textSize="@dimen/titulo"
+        app:layout_constraintTop_toBottomOf="@id/cubiclinechart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_lancamentos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginStart="56dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/tv_ultlanc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline2"
+        tools:listitem="@layout/lancamento_simplificado" />
+
+    <Button
+        android:id="@+id/btn_extrato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ver Extrato geral"
+        android:layout_marginTop="5dp"
+        style="@style/buttonout"
+        android:textSize="12sp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="106dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="110dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="580dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

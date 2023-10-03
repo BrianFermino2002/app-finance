@@ -3,112 +3,116 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="16dp"
+    android:paddingTop="48dp"
+    android:padding="48dp"
     android:layout_height="match_parent"
     tools:context=".presentation.CadastroActivity">
 
-    <TextView
-        android:id="@+id/tvCad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+    <ImageView
+        android:id="@+id/iv_inicial"
+        android:layout_width="137dp"
+        android:layout_height="137dp"
+        android:src="@drawable/money"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/TextAppearance.Material3.HeadlineSmall"
-        android:justificationMode="inter_word"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/infoCad"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linear"
-        style="@style/Widget.Material3.CardView.Elevated"
+    <TextView
+        android:id="@+id/tv_ola_usuario"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        tools:text="Olá, Brian"
+        android:textSize="@dimen/olaUsuario"
+        app:layout_constraintTop_toBottomOf="@id/iv_inicial"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_not_cadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/infoCad"
+        android:textSize="@dimen/paragrafo"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv_ola_usuario"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textAlignment="inherit"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tf_idade"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/hintcadidade"
+        android:textColorHint="@color/tf_color"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:endIconContentDescription="limpar"
+        app:endIconDrawable="@drawable/clear_icon"
+        app:endIconMode="clear_text"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusTopStart="14dp"
+        app:boxCornerRadiusBottomEnd="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_not_cadastro"
+        app:startIconContentDescription="pessoa"
+        app:startIconDrawable="@drawable/calendar_1">
 
-        app:cardElevation="5dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_idade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tf_salario"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Digite seu Salário"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusTopStart="14dp"
+        app:boxCornerRadiusBottomEnd="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        android:textColorHint="@color/tf_color"
+        app:counterEnabled="true"
+        app:counterMaxLength="15"
+        app:endIconContentDescription="limpar"
+        app:endIconDrawable="@drawable/clear_icon"
+        app:endIconMode="clear_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tf_idade"
+        app:startIconContentDescription="pessoa"
+        app:startIconDrawable="@drawable/dollar_sign_1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_salario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/bt_finalizacad"
+        style="@style/buttonMainStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtbtncad"
+        android:layout_marginRight="64dp"
+        android:layout_marginLeft="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCad"
-        app:layout_constraintVertical_bias="0.13">
+        app:layout_constraintTop_toBottomOf="@id/tf_salario"
+        app:layout_constraintVertical_bias="0.39"
+        android:textAllCaps="false"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Headline3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cadastro" />
-
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Headline5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nome:" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="@string/hinthome"
-                app:counterEnabled="true"
-                app:counterMaxLength="30"
-                app:endIconContentDescription="limpar"
-                app:endIconDrawable="@drawable/clear_icon"
-                app:endIconMode="clear_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_infocad"
-                app:startIconContentDescription="pessoa"
-                app:startIconDrawable="@drawable/person_icon">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_nomeCad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Headline5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Salário (Renda Ativa):" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Digite seu Salário"
-                app:counterEnabled="true"
-                app:counterMaxLength="15"
-                app:endIconContentDescription="limpar"
-                app:endIconDrawable="@drawable/clear_icon"
-                app:endIconMode="clear_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_infocad"
-                app:startIconContentDescription="pessoa"
-                app:startIconDrawable="@drawable/money_icon">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_salario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-        </LinearLayout>
-    </LinearLayout>
-    <Button
-        android:id="@+id/bt_finalizacad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txtbtnLogin"
-        app:layout_constraintTop_toBottomOf="@id/linear"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

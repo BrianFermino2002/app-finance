@@ -1,10 +1,39 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Finance" parent="Theme.Material3.DayNight.NoActionBar">
+
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="boxStrokeColor">@color/white</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxBackgroundColor">@color/azul</item>
+        <item name="startIconTint">@color/white</item>
+        <item name="endIconTint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="hintTextColor">@color/tf_color</item>
+    </style>
+    
+    <style name="buttonMainStyle" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">9dp</item>
+        <item name="backgroundTint">@color/azul</item>
+    </style>
+
+    <style name="DividerStyle" parent="Widget.MaterialComponents.MaterialDivider">
+        <item name="android:radius">16dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">60dp</item>
+        <item name="backgroundInsetStart">64dp</item>
+        <item name="android:background">@drawable/rounded_divider</item>
+    </style>
+
+    <style name="buttonout" parent="Widget.MaterialComponents.Button.OutlinedButton">
+     <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Base.Theme.Finance" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_500</item>
-        <item name="colorPrimaryVariant">@color/blue_700</item>
+        <item name="colorPrimary">@color/azul</item>
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/pink_200</item>
         <item name="colorSecondaryVariant">@color/pink_700</item>
@@ -13,80 +42,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
-        <item name="iconTint">@color/black</item>
-    </style>
-
-    <style name="TemaRosa" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#4a078C</item>
-        <item name="colorPrimaryVariant">#4a078c</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">#4a078c</item>
-        <item name="colorSecondaryVariant">#eed0f2</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="colorOutline">#eed0f2</item>
-        <!-- Status bar color. -->
-
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">#061533</item>
-        <item name="tabBackground">@color/fundoBarbie</item>
-        <item name="colorSurface">#3a3e8c</item>
-        <item name="iconTint">@color/black</item>
-    </style>
-
-    <style name="TemaAzul" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="colorPrimary">@color/azul_medio</item>
-        <item name="colorPrimaryVariant">@color/azul_medio</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/azul_medio</item>
-        <item name="textAppearanceHeadline3">@color/white</item>
-        <item name="colorSecondaryVariant">@color/rosa_medio</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="colorOutline">@color/azul_medio</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@color/azul_escuro</item>
-        <item name="tabBackground">@color/azul_escuro</item>
-        <item name="colorSurface">@color/azul_claro</item>
         <item name="iconTint">@color/white</item>
-        <item name="borderlessButtonStyle">@color/white</item>
-        <!-- Customize your theme here. -->
-    </style>
-
-
-    <style name="TemaLaranja" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/laranja_escuro</item>
-        <item name="colorPrimaryVariant">@color/laranja_escuro</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/laranja_medio</item>
-        <item name="colorSecondaryVariant">@color/laranja_medio</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="colorOutline">@color/laranja_escuro</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@color/laranja_claro</item>
-        <item name="tabBackground">@color/laranja_claro</item>
-        <item name="colorSurface">@color/laranja_claro</item>
-        <item name="iconTint">@color/black</item>
-    </style>
-
-    <style name="TemaVerde" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">#10403b</item>
-        <item name="colorPrimaryVariant">#10403b</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">#10403b</item>
-        <item name="colorSecondaryVariant">#10403b</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="colorOutline">#10403b</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@color/fundoPalmeirense</item>
-        <item name="tabBackground">@color/fundoPalmeirense</item>
-        <item name="colorSurface">#127369</item>
-        <item name="iconTint">@color/black</item>
     </style>
 
 </resources>

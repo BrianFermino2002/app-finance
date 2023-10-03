@@ -11,23 +11,25 @@ import java.time.format.TextStyle
 import java.util.Locale
 
 fun LiveData<List<LancamentoDomain>>.sortedByDate(): LiveData<List<LancamentoDomain>> =
-        this.map { list ->
-            list.sortedBy { lanc ->
-                lanc.dataEfet }
-        }
+    this.map { list ->
+        list.sortedBy { lanc ->
+            lanc.dataEfet }
+    }
 
 fun List<LancamentoDomain>.toListOfDataItem(): List<DataItem> {
 
     val grouping = this.groupBy { lancamento ->
-        val date = LocalDate.parse(lancamento.dataEfet, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-        date.monthValue to date.year // Agrupar pelo mês e pelo ano
+        lancamento.dataEfet.substring(0, 5) // Obtém os 5 primeiros caracteres (DD/MM)
     }
 
     val listDataItem = mutableListOf<DataItem>()
     grouping.forEach { mapEntry ->
-        val (month, year) = mapEntry.key
+        val date = LocalDate.parse(mapEntry.key, DateTimeFormatter.ofPattern("dd/MM"))
+        val day = date.dayOfMonth
+        val month = date.monthValue
+
         val monthName = Month.of(month).getDisplayName(TextStyle.FULL, Locale.getDefault())
-        listDataItem.add(DataItem.Header("$monthName $year", month, year))
+        listDataItem.add(DataItem.Header("$day/$month", day, month))
         listDataItem.addAll(
             mapEntry.value.map { lanc ->
                 DataItem.LancamentoItem(lanc)

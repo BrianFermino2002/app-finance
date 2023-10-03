@@ -1,32 +1,16 @@
 package com.example.finance.presentation.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
-import com.example.finance.R
 import com.example.finance.databinding.FragmentRelatorioBinding
-import com.example.finance.presentation.HomeActivity
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
-import android.content.Context
-import com.example.finance.presentation.ThemeManager.Companion.setCustomizedThemes
-import com.example.finance.presentation.ThemeStorage.Companion.getThemeColor
-import com.example.finance.presentation.ThemeStorage.Companion.setThemeColor
-import android.os.Environment
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat.recreate
-import com.itextpdf.text.Document
-import com.itextpdf.text.Image
-import com.itextpdf.text.PageSize
-import com.itextpdf.text.Paragraph
-import com.itextpdf.text.pdf.PdfWriter
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
+import org.eazegraph.lib.charts.ValueLineChart
+import org.eazegraph.lib.models.ValueLinePoint
+import org.eazegraph.lib.models.ValueLineSeries
 
 private const val TAG = "MainActivity"
 
@@ -42,6 +26,43 @@ class FragmentRelatorio: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRelatorioBinding.inflate(inflater, container, false)
+        val graphView: ValueLineChart = binding.cubiclinechart
+        val series: ValueLineSeries = ValueLineSeries()
+        val series2: ValueLineSeries = ValueLineSeries()
+
+        series2.color = Color.RED
+        series.color = Color.BLUE
+
+        series.addPoint(ValueLinePoint("jan", 2.4f))
+        series.addPoint(ValueLinePoint("Feb", 3.4f))
+        series.addPoint(ValueLinePoint("Mar", .4f))
+        series.addPoint(ValueLinePoint("Apr", 1.2f))
+        series.addPoint(ValueLinePoint("Mai", 2.6f))
+        series.addPoint(ValueLinePoint("Jun", 1.0f))
+        series.addPoint(ValueLinePoint("Jul", 3.5f))
+        series.addPoint(ValueLinePoint("Aug", 2.4f))
+        series.addPoint(ValueLinePoint("Sep", 2.4f))
+        series.addPoint(ValueLinePoint("Oct", 3.4f))
+        series.addPoint(ValueLinePoint("Nov", .4f))
+        series.addPoint(ValueLinePoint("Dec", 1.3f))
+
+
+        series2.addPoint(ValueLinePoint("jan", 1.4f))
+        series2.addPoint(ValueLinePoint("Feb", 2.4f))
+        series2.addPoint(ValueLinePoint("Mar", .1f))
+        series2.addPoint(ValueLinePoint("Apr", .2f))
+        series2.addPoint(ValueLinePoint("Mai", 1.6f))
+        series2.addPoint(ValueLinePoint("Jun", .5f))
+        series2.addPoint(ValueLinePoint("Jul", 1.5f))
+        series2.addPoint(ValueLinePoint("Aug", 1.4f))
+        series2.addPoint(ValueLinePoint("Sep", 1.4f))
+        series2.addPoint(ValueLinePoint("Oct", 5.4f))
+        series2.addPoint(ValueLinePoint("Nov", .9f))
+        series2.addPoint(ValueLinePoint("Dec", 4.3f))
+
+        graphView.addSeries(series2)
+        graphView.addSeries(series)
+        graphView.startAnimation()
 
         return binding.root
 
@@ -50,106 +71,8 @@ class FragmentRelatorio: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observe()
-        observePdf()
-
-        binding.btnTeste.setOnClickListener {
-
-            //gerarPDF(requireContext(), lanc, "Lancamento")
-            //gerarExcel(requireContext(), lanc, "Excel")
-        }
-
     }
 
-    fun gerarPDF(context: Context, listaStrings: List<String>, nomeArquivo: String) {
-        val document = Document(PageSize.A4)
-
-        try {
-            val storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            if (!storageDir.exists()) {
-                storageDir.mkdirs()
-            }
-
-            val pdfFile = File(storageDir, "$nomeArquivo.pdf")
-
-            PdfWriter.getInstance(document, FileOutputStream(pdfFile))
-            document.open()
-
-            // Adicionar conteúdo ao documento (lista de strings)
-            listaStrings.forEach { str ->
-                val paragraph = Paragraph(str)
-                document.add(paragraph)
-            }
-
-            document.close()
-
-            Toast.makeText(context, "PDF gerado com sucesso! Caminho: ${pdfFile.absolutePath}", Toast.LENGTH_LONG).show()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(context, "Erro ao gerar PDF", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    fun gerarExcel(context: Context, listaStrings: List<String>, nomeArquivo: String) {
-        val workbook = XSSFWorkbook()
-        val sheet = workbook.createSheet("Planilha 1")
-
-        try {
-            listaStrings.forEachIndexed { rowIndex, str ->
-                val row = sheet.createRow(rowIndex)
-                val cell = row.createCell(0)
-                cell.setCellValue(str)
-            }
-
-            val storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            if (!storageDir.exists()) {
-                storageDir.mkdirs()
-            }
-
-            val excelFile = File(storageDir, "$nomeArquivo.xlsx")
-
-            val fileOut = FileOutputStream(excelFile)
-            workbook.write(fileOut)
-            fileOut.close()
-
-            Toast.makeText(context, "Excel gerado com sucesso! Caminho: ${excelFile.absolutePath}", Toast.LENGTH_LONG).show()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(context, "Erro ao gerar Excel", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-
-    private fun observePdf(){
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.lancamentos.collect { lancamentos ->
-                lanc = lancamentos.map{
-                    it.valor.toString() + " " + it.tipoMov
-                }
-            }
-        }
-    }
-
-    private fun observe() {
-
-        lifecycleScope.launchWhenStarted {
-            viewModel.getLancamentos(HomeActivity.id.toInt()).collect { state ->
-                when (state) {
-                    LancamentoState.Loading -> {
-                        // @TODO mostrar loading para o usuario
-                    }
-                    is LancamentoState.Error -> {
-                        // @TODO Mostrar error parar o usuario
-                    }
-                    is LancamentoState.Success -> {
-                        lanc = state.lancamento.map{
-                            it.valor.toString() + " " + it.tipoMov
-                        }
-                    }
-                }
-            }
-        }
-    }
 
 
 }

@@ -9,11 +9,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finance.databinding.FragmentLancamentosBinding
-import com.example.finance.domain.model.LancamentoDomain
 import com.example.finance.presentation.HomeActivity
 import com.example.finance.presentation.adapters.LancamentoAdapter
 import com.example.finance.presentation.adapters.LancamentoListener
-import com.example.finance.presentation.dialog.DialogAtualizarLancamento
 import com.google.gson.Gson
 
 class FragmentLancamentos: Fragment(){
@@ -32,20 +30,13 @@ class FragmentLancamentos: Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeLanc()
+        /*observeLanc()*/
     }
 
     private fun initLancamentoList() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.lancamentos.collect { lancamentos ->
-                val adapter = LancamentoAdapter(LancamentoListener(editListener = { lanc ->
-                    val lancamentoJson = Gson().toJson(lanc)
-                    DialogAtualizarLancamento.show(
-                        title = "Lançamento - Atualizar",
-                        lancamentoJson = lancamentoJson,
-                        fragmentManager = parentFragmentManager
-                    )
-                }, apagarListener = {lanc ->
+                val adapter = LancamentoAdapter(LancamentoListener( apagarListener = {lanc ->
                     viewModel.deleteLancamento(lanc)
                 }))
                 binding.rvLancamentos.layoutManager = LinearLayoutManager(context)
@@ -57,7 +48,7 @@ class FragmentLancamentos: Fragment(){
 
     }
 
-    private fun observeLanc() {
+    /*private fun observeLanc() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.getLancamentos(HomeActivity.id.toInt()).collect { state ->
@@ -73,7 +64,7 @@ class FragmentLancamentos: Fragment(){
                 }
             }
         }
-    }
+    }*/
 
 }
 

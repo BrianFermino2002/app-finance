@@ -42,11 +42,11 @@ class FragmentVisaoGeral: Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeLanc()
+       /* observeLanc()*/
     }
 
 
-    private fun observeLanc() {
+    /*private fun observeLanc() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.getLancamentos(HomeActivity.id.toInt()).collect { state ->
@@ -59,10 +59,12 @@ class FragmentVisaoGeral: Fragment() {
                     }
                     is LancamentoState.Success -> {
                     }
+
+                    else -> {}
                 }
             }
         }
-    }
+    }*/
 
     private fun formatarLocal(valor: Double ): String{
         val currencyFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())

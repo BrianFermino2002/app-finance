@@ -1,6 +1,8 @@
 package com.example.finance.presentation
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.finance.R
 import com.example.finance.databinding.ActivityMainBinding
 import com.example.finance.presentation.fragments.UserState
 import com.example.finance.presentation.fragments.UserViewModel
@@ -33,43 +36,55 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ThemeManager.setCustomizedThemes(
-            this,
-            ThemeStorage.getThemeColor(this)
-        )
+
 
         tfnome = binding.etNome
         binding.btEnviarNome.setOnClickListener{
             observeStates(tfnome.text.toString())
         }
 
+        checkSession()
         setContentView(binding.root)
     }
 
+    private fun checkSession() {
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
+        if (isLoggedIn) {
+            // O usuário está logado, redirecione para a tela principal
+            val intent = Intent(this, VerificarActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
     private fun observeStates(nome: String){
         viewModel.getAllUser(nome)
         viewModel.state.observe(this){
             when(it){
                 UserState.Empty -> {
-                    binding.pbLoading.isVisible = false
                     val intent = Intent(this, CadastroActivity::class.java)
                     intent.putExtra(CadastroActivity.EXTRA_USERNAME, tfnome.text.toString())
                     startActivity(intent)
                 }
                 is UserState.Error ->{
-                    binding.pbLoading.isVisible = false
                     val intent = Intent(this, CadastroActivity::class.java)
                     intent.putExtra(CadastroActivity.EXTRA_USERNAME, tfnome.text.toString())
                     startActivity(intent)
                 }
-                UserState.Loading -> binding.pbLoading.isVisible = true
+                UserState.Loading -> {}
                 is UserState.Success -> {
-                    binding.pbLoading.isVisible = false
                     val intent = Intent(this, HomeActivity::class.java)
-                    intent.putExtra(HomeActivity.EXTRA_USERID, it.user.id.toString())
-                    intent.putExtra(HomeActivity.EXTRA_USERNAME, it.user.name)
+
                     startActivity(intent)
+
+                    val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("username", it.user.name)
+                    editor.putInt("iduser", it.user.id)
+                    editor.putBoolean("isLoggedIn", true)
+                    editor.apply()
+
                     finish()
                 }
             }

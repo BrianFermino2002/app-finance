@@ -8,7 +8,7 @@ plugins {
 apply plugin: 'kotlin-kapt'
 android {
     namespace 'com.example.finance'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.finance"
@@ -38,20 +38,12 @@ android {
         viewBinding = true
         dataBinding = true
     }
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/proguard/androidx-annotations.pro', 'META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/LICENSE.txt', 'META-INF/license.txt', 'META-INF/NOTICE', 'META-INF/NOTICE.txt', 'META-INF/notice.txt', 'META-INF/ASL2.0']
+        }
+    }
 
-    packagingOptions {
-        exclude 'META-INF/proguard/androidx-annotations.pro'
-    }
-    packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/ASL2.0'
-    }
 
 }
 
@@ -61,13 +53,13 @@ dependencies {
     implementation 'com.github.blackfizz:eazegraph:1.2.5l@aar'
     implementation 'com.nineoldandroids:library:2.4.0'
 
-    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
 
     // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.3"
 
     //Room
     implementation "androidx.room:room-ktx:2.5.2"
@@ -75,8 +67,8 @@ dependencies {
     kapt "androidx.room:room-compiler:2.5.2"
 
     //ViewModel
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
 
     //Gson
     implementation 'com.google.code.gson:gson:2.9.0'
@@ -93,5 +85,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    // optional - RxJava2 support
+    implementation "androidx.datastore:datastore-preferences-rxjava2:1.0.0"
+
+    // optional - RxJava3 support
+    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0"
 
 }

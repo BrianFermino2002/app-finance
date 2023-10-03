@@ -3,16 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/fragmentHome">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/fragmentHome"
         android:name="com.example.finance.presentation.fragments.homeFragment"
         tools:layout="@layout/fragment_home"
-        android:label="homeFragment" >
-        <action
-            android:id="@+id/action_homeFragment_to_fragmentVisaoGeral"
-            app:destination="@id/fragmentVisaoGeral" />
+        android:label="fragmentHome" >
         <action
             android:id="@+id/action_homeFragment_to_fragmentRelatorio"
             app:destination="@id/fragmentRelatorio" />
@@ -22,24 +19,7 @@
         <action
             android:id="@+id/action_homeFragment_to_fragmentAnalises"
             app:destination="@id/fragmentAnalises" />
-        <action
-            android:id="@+id/action_homeFragment_to_fragmentExtras"
-            app:destination="@id/fragmentExtras" />
     </fragment>
-    <fragment
-        android:id="@+id/fragmentVisaoGeral"
-        android:name="com.example.finance.presentation.fragments.FragmentVisaoGeral"
-        android:label="FragmentVisaoGeral"
-        tools:layout="@layout/fragment_visaogeral">
-        <action
-            android:id="@+id/action_fragmentVisaoGeral_to_fragmentLancamentos"
-            app:destination="@id/fragmentLancamentos" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentLancamentos"
-        tools:layout="@layout/fragment_lancamentos"
-        android:name="com.example.finance.presentation.fragments.FragmentLancamentos"
-        android:label="FragmentLancamentos" />
     <fragment
         android:id="@+id/fragmentRelatorio"
         tools:layout="@layout/fragment_relatorio"
@@ -55,9 +35,4 @@
         android:id="@+id/fragmentAnalises"
         android:name="com.example.finance.presentation.fragments.FragmentAnalises"
         android:label="FragmentAnalises" />
-    <fragment
-        android:id="@+id/fragmentExtras"
-        android:name="com.example.finance.presentation.fragments.FragmentExtras"
-        android:label="FragmentExtras"
-        tools:layout="@layout/fragment_extras"/>
 </navigation>

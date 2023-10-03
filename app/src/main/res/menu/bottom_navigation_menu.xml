@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/fragmentHome"
         android:enabled="true"
-        android:icon="@drawable/money_icon"
+        android:icon="@drawable/home_1"
         android:title="Finanças"/>
     <item
         android:id="@+id/fragmentRelatorio"
         android:enabled="true"
-        android:icon="@drawable/relat_icon"
-        android:title="Relatório"/>
+        android:icon="@drawable/bar_chart_2_1"
+        android:title="Gráfico"/>
     <item
         android:id="@+id/fragmentAnalises"
         android:enabled="true"
-        android:icon="@drawable/analise_icon"
-        android:title="Analises"/>
+        android:icon="@drawable/videogame"
+        android:title="Diversos"/>
     <item
         android:id="@+id/fragmentConfigs"
         android:enabled="true"
-        android:icon="@drawable/configuration_icon"
-        android:title="Configurações"/>
+        android:icon="@drawable/user_1"
+        android:title="Usuário"/>
 
-    <item
-        android:id="@+id/fragmentExtras"
-        android:enabled="true"
-        android:icon="@drawable/extras_icon"
-        android:title="Extras"/>
 </menu>

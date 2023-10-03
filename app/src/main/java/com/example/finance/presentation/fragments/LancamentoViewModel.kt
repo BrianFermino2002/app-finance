@@ -1,14 +1,10 @@
 package com.example.finance.presentation.fragments
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.example.finance.data.CategoriaLancamentoEntity
 import com.example.finance.data.db
 import com.example.finance.data.repository.UserRepositoryImpl
 import com.example.finance.domain.model.LancamentoDomain
@@ -17,11 +13,8 @@ import com.example.finance.domain.usecase.GetLancamentoWithUserUseCase
 import com.example.finance.domain.usecase.InsertLancamentoUseCase
 import com.example.finance.domain.usecase.UpdateLancamentoUseCase
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -43,6 +36,9 @@ class LancamentoViewModel(
     private val _somaDebito = MutableStateFlow(0.0)
     val somaDebito: StateFlow<Double> get() = _somaDebito
 
+    private val _carteira = MutableStateFlow(0.0)
+    val carteira: StateFlow<Double> get() = _carteira
+
     fun getLancamentos(idUsuario: Int): Flow<LancamentoState> = flow {
         emit(LancamentoState.Loading)
         try {
@@ -61,7 +57,7 @@ class LancamentoViewModel(
         valor: Double,
         idUsuario: Int,
         dataEfet: String,
-        categoria: CategoriaLancamentoEntity
+        categoria: String
     ) = viewModelScope.launch {
         insertLancamentoUseCase(
             LancamentoDomain(
@@ -87,7 +83,7 @@ class LancamentoViewModel(
         idUsuario: Int,
         dataEfet: String,
         id: Int,
-        categoria: CategoriaLancamentoEntity
+        categoria: String
     ) = viewModelScope.launch {
        updateLancamentoUseCase(
            LancamentoDomain(
@@ -139,6 +135,7 @@ class LancamentoViewModel(
         }else if(somaDeb ==0.0){
             _somaDebito.value = 0.0
         }
+        _carteira.value = _somaCredito.value - _somaDebito.value
     }
 
     fun organizarData(lista: List<LancamentoDomain>): List<LancamentoDomain>{

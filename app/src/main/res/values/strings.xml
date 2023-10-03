@@ -1,10 +1,21 @@
 <resources>
     <string name="app_name">EconoApp</string>
-    <string name="bem_vindo">Olá! Seja bem vindo</string>
-    <string name="infocad">Digite seu nome para sabermos se já possui cadastro:</string>
+    <string name="bem_vindo">Olá, seja bem vindo !</string>
+    <string name="infocad">Para verificarmos se possui cadastro, nos informe seu nome:</string>
     <string name="hinthome">Digite seu nome</string>
-    <string name="infoCad">Verificamos que você ainda não possui cadastro, que tal nos passar algumas informações?</string>
-    <string name="txtbtnLogin">Cadastrar</string>
+    <string name="hintcadidade">Idade</string>
+    <string name="infoCad">Verificamos que ainda não possui cadastro. Para continuar, por favor preencha os campos abaixo</string>
+    <string name="txtbtncad">Cadastrar</string>
+    <string name="txtbtnLogin">Validar</string>
+    <string name="txtbtnsim">Sim</string>
+    <string name="txtbtnnao">Não</string>
+    <string name="txtbtnaddganho">Adicionar Ganho</string>
+    <string name="txtbtnaddgasto">Adicionar Gasto</string>
+    <string name="txtbtnminhasfinancas">Minhas Finanças</string>
+    <string name="txtbtnjogo">Jogo</string>
+    <string name="txtbtneducacaofinanceira">Educação Financeira</string>
+    <string name="txtbtncomogerir">Como gerir suas finanças</string>
+    <string name="txtbtjogo">Perguntas e Respostas</string>
     <string name="lancamentos">Lançamentos</string>
     <string name="visaoGeral">Visão Geral</string>
     <string name="primary_color">Primary color</string>
@@ -13,6 +24,7 @@
     <string name="email_icon">email icon</string>
     <string name="texto_fim_jogo">Você atingiu o nível Máximo! Agora você tem 2 escolhas: Reiniciar
         do nível INICIANTE para aprender mais ou sair dessa tela</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis ligula in eros molestie finibus vel porta libero. Proin urna orci, sollicitudin sit amet ultrices non, auctor et eros. Nam volutpat sapien non justo ullamcorper, vitae mattis ligula tincidunt. Donec pretium vehicula mauris, ac accumsan purus commodo eu. Mauris bibendum aliquam eleifend. Sed vel augue nulla. Nulla facilisi. Donec commodo quis sapien dignissim sodales. Nulla elementum dolor tellus, in tincidunt risus efficitur eget. Cras eu mauris mauris. Pellentesque ac dui placerat, maximus quam sit amet, iaculis eros. Duis blandit nibh at justo dapibus, pellentesque faucibus mauris porta. Nam orci arcu, tempus vel vestibulum non, consequat et odio. Curabitur aliquam vehicula ante vel aliquet. Phasellus nisl augue, euismod ac aliquet eget, cursus vel mi. In purus quam, fermentum sed venenatis nec, volutpat eget ante.</string>
     <string-array name="categorias">
         <item>Casa</item>
         <item>Trabalho</item>

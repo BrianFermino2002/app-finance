@@ -4,47 +4,240 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/visaoGeral"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lancamentos"/>
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tab_layout"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/azul"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_inserirlancamento"
+        <TextView
+            android:id="@+id/tv_ola_usuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/olaUsuario"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="48dp"
+            android:textColor="@color/white"
+            tools:text="Olá, Brian"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        
+        <TextView
+            android:id="@+id/tv_total_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total na Carteira"
+            android:textSize="@dimen/paragrafo"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_ola_usuario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_cartao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/credit_card_1"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_cart"
+            app:layout_constraintEnd_toStartOf="@id/tv_total_cart"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_valor_carteira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="R$ 12345,12"
+            app:layout_constraintStart_toEndOf="@id/iv_cartao"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_cart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/paragrafo"
+            android:layout_marginTop="16dp"
+            />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dvd_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginTop="16dp"
+            app:dividerThickness="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_valor_carteira"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/DividerStyle"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinemeio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="205dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_ganho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guidelinemeio"
+            app:layout_constraintTop_toBottomOf="@id/dvd_home">
+
+            <TextView
+                android:id="@+id/tv_ganhos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ganhos"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/paragrafo"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/iv_ganho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus_square__1__1"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_ganhos"
+                app:layout_constraintEnd_toStartOf="@id/tv_ganhos"/>
+
+            <TextView
+                android:id="@+id/tv_valor_ganho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/paragrafo"
+                app:layout_constraintBottom_toBottomOf="@id/iv_ganho"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toEndOf="@id/iv_ganho"
+                app:layout_constraintTop_toBottomOf="@id/tv_ganhos"
+                app:layout_constraintTop_toTopOf="@id/iv_ganho"
+                tools:text="R$ 500,00" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_gasto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/guidelinemeio"
+            app:layout_constraintTop_toTopOf="@id/cl_ganho"
+            app:layout_constraintBottom_toBottomOf="@id/cl_ganho">
+
+            <TextView
+                android:id="@+id/tv_gastos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gastos"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/paragrafo"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            <ImageView
+                android:id="@+id/iv_gasto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/minus_square_1"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_gastos"
+                app:layout_constraintEnd_toStartOf="@id/tv_gastos"/>
+
+            <TextView
+                android:id="@+id/tv_valor_gasto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/paragrafo"
+                app:layout_constraintBottom_toBottomOf="@id/iv_gasto"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toEndOf="@id/iv_gasto"
+                app:layout_constraintTop_toBottomOf="@id/tv_gastos"
+                app:layout_constraintTop_toTopOf="@id/iv_gasto"
+                tools:text="R$ 1500,00" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/rounded_view"
+        app:layout_constraintBottom_toBottomOf="@id/guideline5" />
+
+    <TextView
+        android:id="@+id/tv_ultlanc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Últimos lançamentos"
+        android:textSize="@dimen/titulo"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/Widget.MaterialComponents.FloatingActionButton"
-        android:contentDescription="Adicionar Lancamento"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/add_icon"/>
+        android:layout_marginTop="32dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_lancamentos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="56dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_max="190dp"
+        app:layout_constraintHeight_min="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_ultlanc"
+        tools:listitem="@layout/lancamento_simplificado" />
+
+    <Button
+        android:id="@+id/btn_extrato"
+        style="@style/buttonout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ver Extrato geral"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_lancamentos"
+        tools:layout_editor_absoluteY="521dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="223dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="225dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@ data class UserWithLancamento (
     @Embedded val user: UserEntity,
     @Relation(
         parentColumn = "id",
-        entityColumn = "idUser"
+        entityColumn = "idUser",
     )
     val lancamento: List<LancamentoEntity>
     )

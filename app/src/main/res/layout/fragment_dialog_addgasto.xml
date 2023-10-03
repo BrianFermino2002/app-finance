@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Adicionar Despesas"/>
+
+    <TextView
+        android:id="@+id/tv_valor_ganhou"
+        android:text="Valor que você gastou"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo"
+        app:layout_constraintStart_toStartOf="@id/tf_lancamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tf_lancamento"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusTopStart="14dp"
+        app:boxCornerRadiusBottomEnd="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        android:textColorHint="@color/tf_color"
+        style="@style/LoginTextInputLayoutStyle"
+        android:hint="R$123,00"
+        app:counterEnabled="true"
+        app:counterMaxLength="15"
+        app:endIconContentDescription="limpar"
+        app:endIconDrawable="@drawable/clear_icon"
+        app:endIconMode="clear_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_valor_ganhou"
+        app:startIconContentDescription="pessoa"
+        app:startIconDrawable="@drawable/dollar_sign_1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_lancamento"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_descricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tf_lancamento"
+        app:layout_constraintStart_toStartOf="@id/tf_descricao"
+        android:text="Descrição"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tf_descricao"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusTopStart="14dp"
+        app:boxCornerRadiusBottomEnd="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        android:textColorHint="@color/tf_color"
+        style="@style/LoginTextInputLayoutStyle"
+        android:hint="Mercado"
+        app:counterEnabled="true"
+        app:counterMaxLength="25"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        app:endIconContentDescription="limpar"
+        app:endIconDrawable="@drawable/clear_icon"
+        app:endIconMode="clear_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_descricao"
+        app:startIconContentDescription="pessoa"
+        app:startIconDrawable="@drawable/edit_1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data do gasto"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tf_descricao"
+        app:layout_constraintStart_toStartOf="@id/tf_data" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tf_data"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusTopStart="14dp"
+        app:boxCornerRadiusBottomEnd="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        android:textColorHint="@color/tf_color"
+        style="@style/LoginTextInputLayoutStyle"
+        android:hint="DD/MM/AAAA"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        app:endIconContentDescription="limpar"
+        app:endIconDrawable="@drawable/clear_icon"
+        app:endIconMode="clear_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_data"
+        app:startIconContentDescription="pessoa"
+        app:startIconDrawable="@drawable/calendar_1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/bt_add"
+        style="@style/buttonMainStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtbtnaddgasto"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="36dp"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/tf_data"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

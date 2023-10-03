@@ -8,5 +8,6 @@ data class User (
         val id: Int = 0,
         val name: String,
         val salario: Double,
-        val nivel: Nivel
+        val nivel: Nivel,
+        val idade: Int
         )

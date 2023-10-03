@@ -1,6 +1,5 @@
 package com.example.finance.data.mapper
 
-import com.example.finance.data.CategoriaLancamentoEntity
 import com.example.finance.data.entity.LancamentoEntity
 import com.example.finance.domain.model.LancamentoDomain
 

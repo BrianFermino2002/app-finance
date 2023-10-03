@@ -43,11 +43,7 @@ class PerguntasActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ThemeManager.setCustomizedThemes(
-            this,
-            ThemeStorage.getThemeColor(this)
-        )
-        originalCardViewColor = binding.cvAlt01.cardBackgroundColor.defaultColor
+        /*originalCardViewColor = binding.cvAlt01.cardBackgroundColor.defaultColor
 
 
         binding.btnProxima.isVisible = false
@@ -123,16 +119,17 @@ class PerguntasActivity : AppCompatActivity() {
             viewModel.updateUsuario(id = user.id,
                 nome = user.name,
                 salario = user.salario,
-                nivel = Nivel.INICIANTE)
+                nivel = Nivel.INICIANTE,
+                idade = user.idade)
         }
 
         binding.btnSair.setOnClickListener {
             finish()
-        }
+        }*/
     }
 
 
-    fun desabilitaBotoes(binding: ActivityPerguntasBinding){
+    /*fun desabilitaBotoes(binding: ActivityPerguntasBinding){
         binding.cvAlt01.isClickable = false
         binding.cvAlt02.isClickable = false
         binding.cvAlt03.isClickable = false
@@ -144,9 +141,9 @@ class PerguntasActivity : AppCompatActivity() {
         binding.cvAlt02.isClickable = true
         binding.cvAlt03.isClickable = true
         binding.cvAlt04.isClickable = true
-    }
+    }*/
 
-    fun showNextQuestion() {
+    /*fun showNextQuestion() {
         if (currentIndex < 10) {
             val pergunta = listaDePerguntasNivel[currentIndex]
             val respostas = listaDeRespostas.filter { it.idPergunta == pergunta.id }
@@ -175,7 +172,8 @@ class PerguntasActivity : AppCompatActivity() {
                     id = user.id,
                     nome = user.name,
                     salario = user.salario,
-                    nivel = nivel
+                    nivel = nivel,
+                    idade = user.idade
                 )
             }else{
                 Toast.makeText(this, "Você Falhou! tente novamente", Toast.LENGTH_LONG).show()
@@ -184,9 +182,9 @@ class PerguntasActivity : AppCompatActivity() {
             }
 
         }
-    }
+    }*/
 
-    fun atualizaPonto(){
+    /*fun atualizaPonto(){
         pontuacao++
     }
 
@@ -247,5 +245,5 @@ class PerguntasActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         finish()
-    }
+    }*/
 }

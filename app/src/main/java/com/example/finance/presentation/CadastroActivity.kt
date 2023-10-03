@@ -27,25 +27,22 @@ class CadastroActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ThemeManager.setCustomizedThemes(
-            this,
-            ThemeStorage.getThemeColor(this)
-        )
+
         setContentView(binding.root)
 
         val nome = intent.getStringExtra(EXTRA_USERNAME)
-        binding.etNomeCad.setText(nome)
+        binding.tvOlaUsuario.setText("Olá, " + nome)
 
         binding.btFinalizacad.setOnClickListener{
-            inserirUsuario()
+            inserirUsuario(nome?: "")
         }
     }
 
 
-    fun inserirUsuario(){
-        val nome = binding.etNomeCad.text.toString()
+    fun inserirUsuario(nome: String){
         val salario = binding.etSalario.text.toString().toDouble()
-        viewModel.insert(nome, salario)
+        val idade = binding.etIdade.text.toString().toInt()
+        viewModel.insert(nome, salario, idade)
         Toast.makeText(this, "Cadastro Realizado! Faça o Login agora",
             Toast.LENGTH_LONG).show()
         finish()

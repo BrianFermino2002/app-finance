@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="15dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ImageView
+            android:id="@+id/iv_tipo_lanc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/plus_square__1__1"/>
+
+        <TextView
+            android:id="@+id/tv_categoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Categoria"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_tipo_lanc"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/lanc_simples"/>
+
+        <TextView
+            android:id="@+id/tv_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_tipo_lanc"
+            android:layout_marginStart="12dp"
+            tools:text="DD/MM"
+            android:textColor="@color/black"
+            android:textSize="@dimen/lanc_simples"/>
+
+        <TextView
+            android:id="@+id/tv_valor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="R$ xx,xx"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/lanc_simples"
+            android:textColor="@color/black"
+            android:layout_marginRight="16dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>

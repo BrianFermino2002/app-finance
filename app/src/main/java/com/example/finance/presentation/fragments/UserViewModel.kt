@@ -65,20 +65,22 @@ class UserViewModel(
         id: Int,
         nome: String,
         salario: Double,
-        nivel: Nivel
+        nivel: Nivel,
+        idade: Int
     ) = viewModelScope.launch{
         updateUserUseCase(
             UserDomain(
                 id = id,
                 salario = salario,
                 name = nome,
-                nivel = nivel
+                nivel = nivel,
+                idade = idade
             )
         )
     }
 
-    fun insert(name: String, salario: Double) = viewModelScope.launch {
-        insertUserUseCase(UserDomain(name = name, salario = salario, nivel = Nivel.INICIANTE))
+    fun insert(name: String, salario: Double, idade: Int) = viewModelScope.launch {
+        insertUserUseCase(UserDomain(name = name, salario = salario, nivel = Nivel.INICIANTE, idade = idade))
     }
 
     class Factory(): ViewModelProvider.Factory{

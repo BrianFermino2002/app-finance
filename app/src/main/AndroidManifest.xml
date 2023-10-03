@@ -17,6 +17,18 @@
         android:theme="@style/Base.Theme.Finance"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.ComoGerirActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.ExtratoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.EscolhaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.VerificarActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.PerguntasActivity"
             android:exported="false" />
         <activity
