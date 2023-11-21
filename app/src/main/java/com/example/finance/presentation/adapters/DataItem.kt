@@ -11,7 +11,7 @@ sealed class DataItem {
     data class LancamentoItem(val lancamento: LancamentoDomain,
                                 override val id: Int = lancamento.id) : DataItem()
 
-    data class Header(val key: String, val month: Int, val year: Int) : DataItem() {
-        override val id: Int = year * 100 + month
+    data class Header(val key: String, val day: Int,  val month: Int, val year: Int) : DataItem() {
+        override val id: Int = year * 10000 + month * 100 + day
     }
 }

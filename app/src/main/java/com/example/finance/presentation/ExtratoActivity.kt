@@ -16,6 +16,8 @@ import com.example.finance.presentation.adapters.LancamentoListener
 import com.example.finance.presentation.fragments.LancamentoState
 import com.example.finance.presentation.fragments.LancamentoViewModel
 import com.example.finance.presentation.fragments.UserViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 class ExtratoActivity : AppCompatActivity() {
     private val binding by lazy{ ActivityExtratoBinding.inflate(layoutInflater)}
@@ -38,28 +40,36 @@ class ExtratoActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.lancamentos.collect { lancamentos ->
-                val adapter = LancamentoAdapter(LancamentoListener( apagarListener = { lanc ->
-                    viewModel.deleteLancamento(lanc)
+                val adapter = LancamentoAdapter(LancamentoListener( clickListener = { lanc ->
+
                 }))
                 binding.rvLancamentos.layoutManager = LinearLayoutManager(this@ExtratoActivity)
                 binding.rvLancamentos.adapter = adapter
                 adapter.addHeadersAndSubmitList(lancamentos)
+            }
+        }
+
+        initLancamentoList()
+    }
+
+    private fun initLancamentoList() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.lancamentos.collect { lancamentos ->
+                val adapter = LancamentoAdapter(LancamentoListener( clickListener = { lanc ->
+
+                }))
+                binding.rvLancamentos.layoutManager = LinearLayoutManager(this@ExtratoActivity)
+                binding.rvLancamentos.adapter = adapter
+                adapter.addHeadersAndSubmitList(lancamentos)
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.carteira.collect{cart ->
+                binding.tvValorCarteira.setText(formatarLocal(cart))
             }
         }
     }
-
-    /*private fun initLancamentoList() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.lancamentos.collect { lancamentos ->
-                val adapter = LancamentoAdapter(LancamentoListener( apagarListener = { lanc ->
-                    viewModel.deleteLancamento(lanc)
-                }))
-                binding.rvLancamentos.layoutManager = LinearLayoutManager(this@ExtratoActivity)
-                binding.rvLancamentos.adapter = adapter
-                adapter.addHeadersAndSubmitList(lancamentos)
-            }
-        }
-    }*/
 
     private fun observeLanc() {
         lifecycleScope.launchWhenStarted {
@@ -77,5 +87,11 @@ class ExtratoActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun formatarLocal(valor: Double ): String{
+        val currencyFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())
+        val formatado = currencyFormat.format(valor)
+        return formatado
     }
 }

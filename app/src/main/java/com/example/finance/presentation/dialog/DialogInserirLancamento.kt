@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.setFragmentResult
+import com.example.finance.R
 import com.example.finance.databinding.FragmentDialogAddlancBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.lang.IllegalStateException
@@ -53,11 +55,15 @@ lateinit var binding:FragmentDialogAddlancBinding
                     dismiss()
                 }
             }
-
             AlertDialog.Builder(it)
                 .setView(binding.root)
                 .create()
+                .apply {
+                    window?.attributes?.windowAnimations = R.style.dialogAnimation
+                }
+
         }?:throw IllegalStateException("Activity cannot be Null")
+
     }
 
     companion object {
@@ -69,14 +75,15 @@ lateinit var binding:FragmentDialogAddlancBinding
 
         fun show(
             title: String,
-            fragmentManager: FragmentManager,
+            fragmentManager: FragmentTransaction,
             tag: String = DialogInserirLancamento::class.simpleName.toString()
         ) {
-            DialogInserirLancamento().apply {
+            val dialog = DialogInserirLancamento().apply {
                 arguments = bundleOf(
-                    TITLE_TEXT to title,
+                    TITLE_TEXT to title
                 )
-            }.show(
+            }
+                dialog.show(
                 fragmentManager,
                 tag
             )

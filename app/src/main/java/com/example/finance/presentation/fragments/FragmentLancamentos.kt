@@ -36,7 +36,7 @@ class FragmentLancamentos: Fragment(){
     private fun initLancamentoList() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.lancamentos.collect { lancamentos ->
-                val adapter = LancamentoAdapter(LancamentoListener( apagarListener = {lanc ->
+                val adapter = LancamentoAdapter(LancamentoListener( clickListener = {lanc ->
                     viewModel.deleteLancamento(lanc)
                 }))
                 binding.rvLancamentos.layoutManager = LinearLayoutManager(context)

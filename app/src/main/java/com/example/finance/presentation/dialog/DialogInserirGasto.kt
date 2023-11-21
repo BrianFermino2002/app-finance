@@ -7,6 +7,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
+import com.example.finance.R
 import com.example.finance.databinding.FragmentDialogAddgastoBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.lang.IllegalStateException
@@ -57,6 +58,9 @@ class DialogInserirGasto: DialogFragment() {
             AlertDialog.Builder(it)
                 .setView(binding.root)
                 .create()
+                .apply {
+                    window?.attributes?.windowAnimations = R.style.dialogAnimation
+                }
         }?:throw IllegalStateException("Activity cannot be Null")
     }
 

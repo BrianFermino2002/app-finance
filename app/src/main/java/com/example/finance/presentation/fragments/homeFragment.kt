@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
+import com.example.finance.R
 import com.example.finance.data.toLocalDateTime
 import com.example.finance.databinding.FragmentHomeBinding
 import com.example.finance.presentation.ExtratoActivity
@@ -103,9 +104,11 @@ class homeFragment: Fragment() {
     }
 
     private fun showDialogGanho(){
+        val ft = parentFragmentManager.beginTransaction()
+        ft.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_down, R.anim.slide_in_up, R.anim.slide_out_down)
         DialogInserirLancamento.show(
             title = "Adicionar Ganho",
-            fragmentManager = parentFragmentManager
+            fragmentManager = ft
         )
     }
 

@@ -19,17 +19,15 @@ fun LiveData<List<LancamentoDomain>>.sortedByDate(): LiveData<List<LancamentoDom
 fun List<LancamentoDomain>.toListOfDataItem(): List<DataItem> {
 
     val grouping = this.groupBy { lancamento ->
-        lancamento.dataEfet.substring(0, 5) // Obtém os 5 primeiros caracteres (DD/MM)
+        val date = LocalDate.parse(lancamento.dataEfet, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        Triple(date.dayOfMonth, date.monthValue, date.year) // Agrupar pelo mês, dia e pelo ano
     }
 
     val listDataItem = mutableListOf<DataItem>()
     grouping.forEach { mapEntry ->
-        val date = LocalDate.parse(mapEntry.key, DateTimeFormatter.ofPattern("dd/MM"))
-        val day = date.dayOfMonth
-        val month = date.monthValue
-
+        val (day, month, year) = mapEntry.key
         val monthName = Month.of(month).getDisplayName(TextStyle.FULL, Locale.getDefault())
-        listDataItem.add(DataItem.Header("$day/$month", day, month))
+        listDataItem.add(DataItem.Header("$day de $monthName $year", day, month, year))
         listDataItem.addAll(
             mapEntry.value.map { lanc ->
                 DataItem.LancamentoItem(lanc)

@@ -20,5 +20,4 @@
         android:enabled="true"
         android:icon="@drawable/user_1"
         android:title="Usuário"/>
-
 </menu>
