@@ -55,7 +55,7 @@ lateinit var binding:FragmentDialogAddlancBinding
                     dismiss()
                 }
             }
-            AlertDialog.Builder(it)
+            AlertDialog.Builder(it, R.style.DialogTheme)
                 .setView(binding.root)
                 .create()
                 .apply {
