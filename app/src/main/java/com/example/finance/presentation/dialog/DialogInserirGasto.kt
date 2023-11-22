@@ -55,7 +55,7 @@ class DialogInserirGasto: DialogFragment() {
                 }
             }
 
-            AlertDialog.Builder(it)
+            AlertDialog.Builder(it, R.style.DialogTheme)
                 .setView(binding.root)
                 .create()
                 .apply {

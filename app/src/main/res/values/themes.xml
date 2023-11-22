@@ -51,6 +51,7 @@
 
     <style name="DialogTheme" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:backgroundDimAmount">1.0</item>
+        <item name="android:backgroundDimAmount">0.8</item>
+        <item name="android:windowBackground">@drawable/rounded_dialog_background</item>
     </style>
 </resources>
